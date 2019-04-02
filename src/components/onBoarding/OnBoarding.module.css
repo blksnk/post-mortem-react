@@ -1,0 +1,9 @@
+.onBoarding {
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+}
+
+.card {
+    width: 100vw;
+}
