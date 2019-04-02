@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {SET_PROFILE_PIC_PREVIEW} from '../actions/rootActions'
 
-export default class UploadProfilePic extends Component {
+class UploadProfilePic extends Component {
 
 	constructor(props) {
 		super(props)
@@ -30,6 +32,9 @@ export default class UploadProfilePic extends Component {
 
 		reader.onload = e => {
 			console.log(e.target.result)
+
+			//update store
+			this.props.setPreviewPic(e.target.result)
 			this.setState( { selectedBase64: e.target.result, empty: false } )
 		}
 
@@ -64,3 +69,17 @@ export default class UploadProfilePic extends Component {
 		)
 	}
 }
+
+const mapStateToProps = (state) => ({
+	profilePicPreview: state.profilePicPreviewBase64,
+})
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setPreviewPic: (base64) => {
+			dispatch(SET_PROFILE_PIC_PREVIEW(base64))
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadProfilePic)
