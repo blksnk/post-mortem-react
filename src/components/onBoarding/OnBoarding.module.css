@@ -1,9 +1,15 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
 .onBoarding {
     display: flex;
     flex-direction: row;
     overflow-x: hidden;
     width: 100vw;
     font-family: 'Karla', sans-serif;
+    margin-bottom: 15%;
 }
 
 .card {
@@ -45,5 +51,22 @@ p {
 .pagination {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+    align-self: center;
+}
+
+#previousBtn {
+    position: absolute;
+    cursor: pointer;
+    left: 5%;
+    top: 20%;
+}
+
+#nextBtn {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 20%;
 }

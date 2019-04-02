@@ -3,6 +3,8 @@ import joe from './joe.png'
 import joe2 from './joe2.png'
 import dotActive from './dot-active.svg'
 import dotInactive from './dot-inactive.svg'
+import nextBtn from './nextBtn.svg'
+import previousBtn from './previousBtn.svg'
 
 import style from './OnBoarding.module.css'
 
@@ -18,18 +20,18 @@ const cards = [
         image: joe2
     },
     {
-        title: "Test",
-        subtitle: "Bonjour",
+        title: "Rédige un mini testament",
+        subtitle: "Décide ce qui adviendra de ton toutou chéri et ta collection de timbres ou renseigne toi sur comment faire un testament avec un notaire.",
         image: joe
     },
     {
-        title: "Test",
-        subtitle: "Bonjour",
+        title: "Découvre le don d'organes",
+        subtitle: "Apprends en plus sur ce que ça veut dire de donner tes organes après ta disparition et prends une décision pour ton petit corps.",
         image: joe2
     },
     {
-        title: "Test",
-        subtitle: "Bonjour",
+        title: "Désigne un contact de confiance",
+        subtitle: "Cette personne sera celle qui recevra toutes tes décisions si tu venais à disparaître et qui sera en charge de les appuyer. Choisis bien!",
         image: joe
     }
 ]
@@ -40,18 +42,26 @@ class OnBoarding extends Component {
     }
 
     displayCard = (card, index) => {
-        const active = (index === this.state.index);
-
         return (
             <div id={'card-' + index} className={style.card} key={index}>
                 <div className={style.image}>
                     <img src={card.image} alt="joe1"/>
                     {this.state.index > 0 ? 
-                        <button onClick={this.handlePreviousChange}>précédent</button> : 
+                        <button id={style.previousBtn} onClick={this.handlePreviousChange}>
+                            <svg width="20" height="33" viewBox="0 0 20 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1943 0L20 3.8775L7.63833 16.5L20 29.1225L16.1943 33L0 16.5L16.1943 0Z" fill="#CAD4DF"/>
+                            </svg>
+                        </button> 
+                        : 
                         null
                     }
                     {this.state.index < 4 ? 
-                        <button onClick={this.handleNextChange}>suivant</button> : 
+                        <button id={style.nextBtn} onClick={this.handleNextChange}>
+                            <svg width="20" height="33" viewBox="0 0 20 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.80567 33L0 29.1225L12.3617 16.5L0 3.8775L3.80567 0L20 16.5L3.80567 33Z" fill="#CAD4DF"/>
+                            </svg>
+                        </button> 
+                        : 
                         null
                     }
                 </div>
@@ -82,6 +92,7 @@ class OnBoarding extends Component {
     handleNextChange = (event) => {
         const newIndex = this.state.index + 1;
         this.setState({ index:  newIndex});
+
         const card = document.getElementById('card-' + newIndex );
         card.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     }
@@ -89,13 +100,14 @@ class OnBoarding extends Component {
     handlePreviousChange = (event) => {
         const newIndex = this.state.index - 1;
         this.setState({ index: newIndex });
+
         const card = document.getElementById('card-' + newIndex );
         card.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     }
 
     render() {
         return (  
-            <section className="wrapper">
+            <section className={style.wrapper}>
                 <div className={style.onBoarding}>
                     {cards.map(this.displayCard)}
                 </div>
