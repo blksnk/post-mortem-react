@@ -8,13 +8,23 @@ import style from './OnBoarding.module.css'
 
 const cards = [
     {
-        title: "Bienvenue ...",
-        subtitle: "Démarrer...",
+        title: "Bienvenue sur Post Mortem !",
+        subtitle: "Démarre l'aventure avec toutes les clés en main pour comprendre ce qui t'attends.",
         image: joe
     },
     {
-        title: "Bienvenue ...",
-        subtitle: "Démarrer...",
+        title: "Organise tes obsèques",
+        subtitle: "Décide toi même comment tes proches te diront adieu, de quelle manière tu les quitteras et où tu résideras pour toujours.",
+        image: joe2
+    },
+    {
+        title: "Test",
+        subtitle: "Bonjour",
+        image: joe
+    },
+    {
+        title: "Test",
+        subtitle: "Bonjour",
         image: joe2
     },
     {
@@ -31,13 +41,21 @@ class OnBoarding extends Component {
 
     displayCard = (card, index) => {
         const active = (index === this.state.index);
+
         return (
-            <div className={style.card + (active ? '' : ' ' + style.hidden)} active={active} key={index}>
-                <div className="image">
+            <div id={'card-' + index} className={style.card} key={index}>
+                <div className={style.image}>
                     <img src={card.image} alt="joe1"/>
-                    <button onClick={this.handleNextChange}>suivant</button>
+                    {this.state.index > 0 ? 
+                        <button onClick={this.handlePreviousChange}>précédent</button> : 
+                        null
+                    }
+                    {this.state.index < 4 ? 
+                        <button onClick={this.handleNextChange}>suivant</button> : 
+                        null
+                    }
                 </div>
-                <div className="text">
+                <div className={style.text}>
                     <h1>{card.title}</h1>
                     <p>{card.subtitle}</p>
                 </div>
@@ -46,15 +64,15 @@ class OnBoarding extends Component {
     }
 
     displayPagination = (card, index) => {
-        if(index == this.state.index) {
+        if(index === this.state.index) {
             return (
-                <div className="dot active">
+                <div className="dot active" key={index}>
                     <img src={dotActive} alt='dot-active'></img>
                 </div>
             )
         } else {
             return (
-                <div className="dot">
+                <div className="dot" key={index}>
                     <img src={dotInactive} alt='dot-inactive'></img>
                 </div>
             )
@@ -62,12 +80,22 @@ class OnBoarding extends Component {
     }
 
     handleNextChange = (event) => {
-        this.setState({ index: this.state.index + 1 });
+        const newIndex = this.state.index + 1;
+        this.setState({ index:  newIndex});
+        const card = document.getElementById('card-' + newIndex );
+        card.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     }
 
-    render() { 
+    handlePreviousChange = (event) => {
+        const newIndex = this.state.index - 1;
+        this.setState({ index: newIndex });
+        const card = document.getElementById('card-' + newIndex );
+        card.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    }
+
+    render() {
         return (  
-            <section className="main">
+            <section className="wrapper">
                 <div className={style.onBoarding}>
                     {cards.map(this.displayCard)}
                 </div>
