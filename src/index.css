@@ -1,6 +1,13 @@
+html {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
 body {
   margin: 0;
   padding: 0;
+  max-width: 700px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -11,4 +18,31 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+.screen-too-big {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	display: none;
+	background: black;
+}
+
+span {
+	color: white;
+}
+
+
+
+
+@media screen and (min-width: 700px) {
+	.screen-too-big {
+		display: flex;
+	}
 }

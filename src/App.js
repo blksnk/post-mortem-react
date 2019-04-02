@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import ScreenTooBig from './components/ScreenTooBig.js'
+
 class App extends Component {
   render() {
     return (
@@ -20,6 +22,8 @@ class App extends Component {
             Learn React
           </a>
         </header>
+
+        <ScreenTooBig/>
       </div>
     );
   }
