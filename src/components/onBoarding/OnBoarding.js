@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import joe from './joe.png'
 import joe2 from './joe2.png'
+import dotActive from './dot-active.svg'
+import dotInactive from './dot-inactive.svg'
 
 import style from './OnBoarding.module.css'
 
@@ -15,18 +17,33 @@ const cards = [
         subtitle: "Décide toi même comment tes proches te diront adieu, de quelle manière tu les quitteras et où tu résideras pour toujours.",
         image: joe2
     },
+    {
+        title: "Test",
+        subtitle: "Bonjour",
+        image: joe
+    }
 ]
+
 class OnBoarding extends Component {
     state = {  
         index: 0,
     }
 
     displayCard = (card, index) => {
+        const active = (index === this.state.index);
+
         return (
-            <div className={style.card} active={index === this.state.index} key={index}>
+            <div className={style.card + (active ? '' : ' ' + style.hidden)} key={index}>
                 <div className={style.image}>
                     <img src={card.image} alt="joe1"/>
-                    <button><span>passer</span></button>
+                    {this.state.index > 0 ? 
+                        <button onClick={this.handlePreviousChange}>précédent</button> : 
+                        null
+                    }
+                    {this.state.index < 5 ? 
+                        <button onClick={this.handleNextChange}>suivant</button> : 
+                        null
+                    }
                 </div>
                 <div className={style.text}>
                     <h1>{card.title}</h1>
@@ -35,10 +52,40 @@ class OnBoarding extends Component {
             </div>
         )
     }
-    render() { 
+
+    displayPagination = (card, index) => {
+        if(index === this.state.index) {
+            return (
+                <div className="dot active" key={index}>
+                    <img src={dotActive} alt='dot-active'></img>
+                </div>
+            )
+        } else {
+            return (
+                <div className="dot" key={index}>
+                    <img src={dotInactive} alt='dot-inactive'></img>
+                </div>
+            )
+        }
+    }
+
+    handleNextChange = (event) => {
+        this.setState({ index: this.state.index + 1 });
+    }
+
+    handlePreviousChange = (event) => {
+        this.setState({ index: this.state.index - 1 });
+    }
+
+    render() {
         return (  
-            <section className={style.onBoarding}>
-                {cards.map(this.displayCard)}   
+            <section className="wrapper">
+                <div className={style.onBoarding}>
+                    {cards.map(this.displayCard)}
+                </div>
+                <div className={style.pagination}>
+                    {cards.map(this.displayPagination)}
+                </div>
             </section>
         );
     }
