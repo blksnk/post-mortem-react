@@ -32,7 +32,7 @@ class OnBoarding extends Component {
     displayCard = (card, index) => {
         const active = (index === this.state.index);
         return (
-            <div className={style.card + (active ? '' : ' ' + style.hidden)} active={active} key={index}>
+            <div id={'card-' + index} ref={'card-' + index}  className={style.card + (active ? ' ' + style.active : '') + 'card-' + index } active={active} key={index}>
                 <div className="image">
                     <img src={card.image} alt="joe1"/>
                     <button onClick={this.handleNextChange}>suivant</button>
@@ -62,7 +62,11 @@ class OnBoarding extends Component {
     }
 
     handleNextChange = (event) => {
-        this.setState({ index: this.state.index + 1 });
+        const newIndex = this.state.index + 1;
+        this.setState({ index:  newIndex});
+        
+        const card = document.getElementById('card-' + newIndex );
+        card.scrollIntoView();
     }
 
     render() { 

@@ -1,16 +1,12 @@
 .onBoarding {
     display: flex;
     flex-direction: row;
-    overflow-x: hidden;
+    overflow-x: scroll;
 }
 
 .card {
     width: 100vw;
-}
 
-.hidden {
-    visibility: hidden;
-    width: 0;
 }
 
 .pagination {
