@@ -16,7 +16,7 @@ class App extends Component {
         <Switch>
           <Route path="/signup/avatar" component={ChooseAvatar} />         
           <Route exact path="/signup" component={SignUp} />
-       	  <Route exact path)"/" component={onBoarding}/>
+       	  <Route exact path="/" component={OnBoarding}/>
         </Switch>
 
         <ScreenTooBig/>
