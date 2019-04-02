@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import ScreenTooBig from './components/ScreenTooBig'
 
 import SignUp from './components/signup/SignUp'
 import ChooseAvatar from './components/signup/ChooseAvatar'
 import TrustedPerson from './components/signup/TrustedPerson'
 
-import ScreenTooBig from './components/ScreenTooBig.js'
 import OnBoarding from './components/onBoarding/OnBoarding.js'
 
 class App extends Component {
