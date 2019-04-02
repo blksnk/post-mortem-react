@@ -2,6 +2,7 @@ html {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+	max-width: 576px;
 }
 
 body {
@@ -41,7 +42,7 @@ span {
 
 
 
-@media screen and (min-width: 700px) {
+@media (min-width: 576px) {
 	.screen-too-big {
 		display: flex;
 	}
