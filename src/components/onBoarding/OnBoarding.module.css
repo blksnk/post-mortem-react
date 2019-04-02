@@ -7,3 +7,14 @@
 .card {
     width: 100vw;
 }
+
+.hidden {
+    visibility: hidden;
+    width: 0;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
