@@ -76,3 +76,42 @@ span {
 	max-width: 120px;
 	min-width: 100px;
 }
+
+/*####################### FILE UPLOAD ####################*/
+
+.file-import-label {
+	height: 120px;
+	width: 120px;
+	border-radius: 60px;
+}
+
+.empty-box {
+	border-radius: 60px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 120px;
+	width: 120px;
+}
+
+.file-import-preview {
+	max-width: 100%;
+	min-height: 100%;
+}
+
+.file-import-logo {
+	height: 120px;
+	width: 120px;
+	position: relative;
+}
+
+.file-import-logo-plus {
+	position: relative;
+	/*top: -32px;*/
+	left: -36px;
+}
+
+.file-import-input {
+	display: none;
+}
