@@ -6,6 +6,7 @@ import ScreenTooBig from './components/ScreenTooBig'
 
 import SignUp from './components/signup/SignUp'
 import ChooseAvatar from './components/signup/ChooseAvatar'
+import TrustedPerson from './components/signup/TrustedPerson'
 
 import OnBoarding from './components/onBoarding/OnBoarding.js'
 
@@ -14,7 +15,8 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/signup/avatar" component={ChooseAvatar} />         
+          <Route exact path="/signup/avatar" component={ChooseAvatar} />  
+          <Route exact path='/signup/trusted' component={TrustedPerson} />       
           <Route exact path="/signup" component={SignUp} />
        	  <Route exact path="/" component={OnBoarding}/>
         </Switch>
