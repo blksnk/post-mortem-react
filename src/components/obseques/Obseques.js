@@ -34,13 +34,9 @@ const cards = [
 ]
 
 class Obseques extends Component {
-<<<<<<< HEAD
     state = {
         index: 0,
-=======
-    state = {  
-        index: 1,
->>>>>>> f70aec12bd187279962552c7d258363969c1a59d
+
     }
 
     render() {
@@ -59,13 +55,10 @@ class Obseques extends Component {
                   ),
                 }[this.state.index]}
               </div>
-<<<<<<< HEAD
-              <div className="footer">
-=======
+
               <div className={style.footer}>
                 <button id={style.skipBtn}>Passer</button>
                 <button id={style.nextBtn}>Suivant</button>
->>>>>>> f70aec12bd187279962552c7d258363969c1a59d
               </div>
             </section>
         );
