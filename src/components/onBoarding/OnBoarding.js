@@ -3,8 +3,6 @@ import joe from './joe.png'
 import joe2 from './joe2.png'
 import dotActive from './dot-active.svg'
 import dotInactive from './dot-inactive.svg'
-import nextBtn from './nextBtn.svg'
-import previousBtn from './previousBtn.svg'
 
 import style from './OnBoarding.module.css'
 
@@ -112,8 +110,14 @@ class OnBoarding extends Component {
                     {cards.map(this.displayCard)}
                 </div>
                 <div className={style.pagination}>
-                    {cards.map(this.displayPagination)}
+                    {
+                        this.state.index < 4 ? 
+                        cards.map(this.displayPagination)
+                        :
+                        null
+                    } 
                 </div>
+                {this.state.index >= 4 ? <button id={style.start}>Commencer</button> : null}
             </section>
         );
     }
