@@ -1,7 +1,7 @@
 const initState = {
 	loggedIn: false,
 	jwt: null,
-	profilePicPreviewBase64: null
+	profilePicPreviewBase64: null,
 	funeralInputs: {},
 }
 
