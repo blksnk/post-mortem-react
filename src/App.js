@@ -6,12 +6,12 @@ import ScreenTooBig from './components/ScreenTooBig'
 
 import SignUp from './components/signup/SignUp'
 import ChooseAvatar from './components/signup/ChooseAvatar'
-import TrustedPerson from './components/trusted/TrustedPerson.js'
-import TrustedIntro from './components/trusted/TrustedIntro.js'
+import TrustedPerson from './components/trusted/TrustedPerson'
+import TrustedIntro from './components/trusted/TrustedIntro'
 
 import LogIn from './components/login/LogIn'
 
-import OnBoarding from './components/onBoarding/OnBoarding.js'
+import OnBoarding from './components/onBoarding/OnBoarding'
 
 class App extends Component {
   render() {
@@ -25,7 +25,6 @@ class App extends Component {
              
           <Route exact path='/trusted/add' component={TrustedPerson} />
           <Route exact path='/trusted/' component={TrustedIntro} />
-
 
        	  <Route exact path="/onboarding" component={OnBoarding}/>
         </Switch>
