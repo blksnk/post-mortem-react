@@ -2,120 +2,220 @@ import React, { Component } from 'react'
 import style from './Obseques.module.css'
 import joe from '../onBoarding/joe.png'
 import joe2 from '../onBoarding/joe2.png'
+import success from './success.svg'
+
 
 
 const cards = [
   {
     title: "Les obsèques de tes rêves",
     subtitle: "",
+    choices: [
+      {
+        title: "Inhumation",
+        subtitle: "(Enterrer)",
+        image: null,
+        nextCard: 1,
+      },
+      {
+        title: "Crémation",
+        subtitle: "(Partir en fumée)",
+        image: null,
+        nextCard: 3,
+      },
+      {
+        title: "Don à la science",
+        subtitle: "(Comme Dr Maboul)",
+        image: null,
+        nextCard: 4,
+      },
+    ]
   },
   {
     title: "Cercueil de tes rêves ?",
     subtitle: "",
-    boxes: [
+    choices: [
       {
         title: "Cercueil en bois de chêne",
         image: joe,
-        index: 0,
+        nextCard: 2,
       },
       {
         title: "Cercueil en contreplaqué",
         image: joe2,
-        index: 1,
+        nextCard: 2,
       },
       {
         title: "Cercueil en bois recyclé",
         image: joe,
-        index: 2,
+        nextCard: 2,
       },
       {
         title: "Cercueil en plastique",
         image: joe2,
-        index: 3,
+        nextCard: 2,
+      }
+    ]
+  },
+  {
+    title: "La tombe de tes rêves ?",
+    choices: [
+      {
+        title: "Caveau",
+        subtitle: "(pour toi et toute ta famille)",
+        nextCard: 4
+      },
+      {
+        title: "Tombe pleine terre",
+        subtitle: "(1 personne max)",
+        nextCard: 4
+      },
+      {
+        title: "L'enfeu",
+        subtitle: "(spécial pour les sudistes)",
+        nextCard: 4
+      }
+    ]
+  },
+  {
+    title: "Urne tes rêves ?",
+    choices: [
+      {
+        title: "Urne en composite",
+        subtitle: "(pour toi et toute ta famille)",
+        nextCard: 4,
+      },
+      {
+        title: "Urne recyclable",
+        subtitle: "(pour toi et toute ta famille)",
+        nextCard: 4,
       }
     ]
   }
 ]
 
 class Obseques extends Component {
-    state = {  
-        index: 1,
+    state = {
+        index: 0,
+        choices: {
+          0: -1,
+          1: -1,
+          2: -1,
+          3: -1,
+          4: -1,
+        }
     }
 
+    handleNextCard = (event) => {
+      const choice = this.state.choices[this.state.index];
+      if(choice >= -1) {
+        const nextIndex = cards[this.state.index].choices[choice].nextCard;
+        this.setState({index: nextIndex});
+      }
+    }
+
+    handleSaveChoice = (indexChoice) => {
+      const choices = {...this.state.choices};
+      choices[this.state.index] = indexChoice;
+      this.setState({choices});
+    }
+
+    RenderBody = (props) => {
+      switch(this.state.index) {
+        case 0: return (
+          <ChoiceList 
+            card={cards[this.state.index]}
+            callbackHandleSaveChoice={this.handleSaveChoice}
+          />
+        )
+        case 1: return (
+          <ChoiceList 
+            card={cards[this.state.index]}
+            callbackHandleSaveChoice={this.handleSaveChoice} 
+          />
+        )
+        case 2: return (
+          <ChoiceList 
+            card={cards[this.state.index]}
+            callbackHandleSaveChoice={this.handleSaveChoice} 
+          />
+        )
+        case 3: return (
+          <ChoiceList 
+            card={cards[this.state.index]}
+            callbackHandleSaveChoice={this.handleSaveChoice} 
+          />
+        )
+      }
+    }
+    
     render() {
-        return (  
+        return (
             <section className={style.wrapper}>
               <div className={style.title}>
                 <h1>{cards[this.state.index].title}</h1>
               </div>
               <div className="body">
-                {{
-                  0: (
-                    <ObsequesHome />
-                  ),
-                  1: (
-                    <ObsequesCercueil index={this.state.index}/>
-                  ),
-                }[this.state.index]}
+                <this.RenderBody/>
               </div>
+
               <div className={style.footer}>
-                <button id={style.skipBtn}>Passer</button>
-                <button id={style.nextBtn}>Suivant</button>
+              <button id={style.nextBtn} onClick={this.handleNextCard}>Suivant</button>
               </div>
             </section>
         );
     }
 }
 
-class ObsequesHome extends Component {
-  render() {
-    return (
-      <div>Obseques Home</div>
-    )
-  }
-}
-
-class ObsequesCercueil extends Component {
+class ChoiceList extends Component {
   state = {
-    indexActive: -1,
+    indexSelected: -1,
   }  
 
   handleClickedCallback = (index) => {
-    this.setState({ indexActive: index});
+    this.setState({ indexSelected: index });
+    this.props.callbackHandleSaveChoice(index);
   }
 
-  displayBox = (box, index) => {
+  displayChoice = (choice, index) => {
     return (
-      <ObsequeChoiceBox box={box} callbackHandleClicked={this.handleClickedCallback} indexActive={this.state.indexActive} key={index} />
+      <ChoiceItem 
+        choice={choice} 
+        callbackHandleClicked={this.handleClickedCallback} 
+        isSelected={this.state.indexSelected === index} 
+        key={index} 
+        indexChoice={index} 
+      />
     )
   }
 
   render() {
-    const card = cards[this.props.index];
-
     return (
       <div className={style.choiceList}>
-        {card.boxes.map(this.displayBox)}
+        {this.props.card.choices.map(this.displayChoice)}
       </div>
     )
   }
 }
 
-class ObsequeChoiceBox extends Component {
+class ChoiceItem extends Component {
   handleClicked = (event) => {
-    this.props.callbackHandleClicked(this.props.box.index);
+    if(this.props.isSelected) {
+      this.props.callbackHandleClicked(-1);
+    } else {
+      this.props.callbackHandleClicked(this.props.indexChoice);
+    }
   }
 
   render () {
-    const isActive = (this.props.box.index === this.props.indexActive);
-
     return (
-      <div className={style.choiceItem + (isActive? ' ' + style.isClicked : '')} onClick={this.handleClicked}>
-        <img className={style.choiceImage} src={this.props.box.image} />
-        <div className={style.choiceTitle}>{this.props.box.title}</div>
+      <div className={style.choiceItem + (this.props.isSelected? ' ' + style.isClicked : '')} onClick={this.handleClicked}>
+        {this.props.isSelected? <img className={style.isClickedIcon} src={success} />: null}
+        {this.props.choice.image?  <img className={style.choiceImage} src={this.props.choice.image} /> : null}
+        <div className={style.choiceTitle}>{this.props.choice.title}</div>
       </div>
     )
   }
 }
- 
+
 export default Obseques;
