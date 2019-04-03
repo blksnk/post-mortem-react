@@ -9,6 +9,7 @@ import ChooseAvatar from './components/signup/ChooseAvatar'
 import TrustedPerson from './components/signup/TrustedPerson'
 
 import OnBoarding from './components/onBoarding/OnBoarding.js'
+import Obseques from './components/obseques/Obseques'
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/signup/avatar" component={ChooseAvatar} />  
           <Route exact path='/signup/trusted' component={TrustedPerson} />       
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/obseques" component={Obseques}/>
        	  <Route exact path="/" component={OnBoarding}/>
         </Switch>
 
