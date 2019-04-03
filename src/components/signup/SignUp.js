@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 
 import Logo from '../Logo.js'
+import style from './SignUp.module.css'
+import btnStyle from '../buttons.module.css'
 
 export default class SignUp extends Component {
 	constructor(props) {
@@ -8,9 +11,10 @@ export default class SignUp extends Component {
 
 		this.state = {
 			firstName: null,
-			lastName: null,
 			email: null,
-			password: null
+			password: null,
+			redirect: false,
+			redirectLogin: false
 		}
 	}
 
@@ -25,13 +29,16 @@ export default class SignUp extends Component {
 	}
 
 	handleSubmit() {
-		const {firstName, lastName, email, password} = this.state
+		const {firstName, email, password} = this.state
 
-		if (firstName !==null && lastName !==null && email !==null && password !==null) {
+		if (firstName !==null && email !==null && password !==null) {
 			console.log('submit')
 
 			//axios...
 			//envoi db
+
+			//redirect
+			this.setState({redirect: true})
 		}
 		else return
 	}
@@ -44,24 +51,23 @@ export default class SignUp extends Component {
 
 				<Logo />
 
-				<label>Prénom
+				<label className={style.inputLabel}>Prénom
 					<input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
 				</label>
 
-				<label>Nom de famille
-					<input name='lastName' type="text" onChange={(e) => this.handleChange(e)}/>
-				</label>
-
-				<label>Email
+				<label className={style.inputLabel}>Email
 					<input name='email' type="email" onChange={(e) => this.handleChange(e)}/>
 				</label>
 
-				<label>Mot de Passe
+				<label className={style.inputLabel}>Mot de Passe
 					<input name='password' type="password" onChange={(e) => this.handleChange(e)}/>
 				</label>
 
-				<button onClick={() => this.handleSubmit()}>Valider</button>
+				<button className={btnStyle.bigBlue} onClick={() => this.handleSubmit()}>Créer un compte</button>
+				<button className={btnStyle.smallGrey} onClick={() => this.setState({redirectLogin: true})}>Se connecter</button>
 
+				{this.state.redirect ? <Redirect to='/signup/avatar'/> : null}
+				{this.state.redirectLogin ? <Redirect to='/login'/> : null}
 			</div>
 		);
 	}
