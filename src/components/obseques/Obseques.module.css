@@ -81,3 +81,7 @@
   cursor: pointer;
 }
 
+.inputList {
+  display: flex;
+  flex-direction: column;
+}

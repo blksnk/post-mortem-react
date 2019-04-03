@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {SET_FUNERAL_INPUTS} from '../../actions/rootActions'
 import style from './Obseques.module.css'
 import joe from '../onBoarding/joe.png'
 import joe2 from '../onBoarding/joe2.png'
 import success from './success.svg'
 
-
-
 const cards = [
   {
     title: "Les obsèques de tes rêves",
     subtitle: "",
+    key: "funeralType",
     choices: [
       {
         title: "Inhumation",
@@ -34,6 +35,7 @@ const cards = [
   {
     title: "Cercueil de tes rêves ?",
     subtitle: "",
+    key: "coffinType",
     choices: [
       {
         title: "Cercueil en bois de chêne",
@@ -59,6 +61,7 @@ const cards = [
   },
   {
     title: "La tombe de tes rêves ?",
+    key: "tombType",
     choices: [
       {
         title: "Caveau",
@@ -79,6 +82,7 @@ const cards = [
   },
   {
     title: "Urne tes rêves ?",
+    key: "urnType",
     choices: [
       {
         title: "Urne en composite",
@@ -91,33 +95,44 @@ const cards = [
         nextCard: 4,
       }
     ]
+  },
+  {
+    title: "Choisis les musiques pour une meilleure cérémonie",
+    subtitle: "(3 choix possibles)",
+    key: "musicList",
+  },
+  {
+    title: "Tes lieux rêvés pour tes obsèques",
+    subtitle: "(3 choix possibles)",
+    key: "locationList",
   }
 ]
 
 class Obseques extends Component {
     state = {
         index: 0,
-        choices: {
-          0: -1,
-          1: -1,
-          2: -1,
-          3: -1,
-          4: -1,
-        }
+        funeralInputs: {},
+        currentInput: null,
     }
 
     handleNextCard = (event) => {
-      const choice = this.state.choices[this.state.index];
-      if(choice >= -1) {
-        const nextIndex = cards[this.state.index].choices[choice].nextCard;
-        this.setState({index: nextIndex});
+      const card = cards[this.state.index];
+      let nextIndex = 0;
+      if(this.state.currentInput !== null) {
+        if('choices' in cards) {
+          nextIndex = card.choices[this.state.currentInput].nextCard;
+        } else {
+          nextIndex = this.state.index + 1;
+        }
+        this.setState({index: nextIndex, currentInput: null});
+        let funeralInputs = this.state.funeralInputs;
+        funeralInputs[card.key] = this.state.currentInput;
+        this.props.setFuneralInputs({funeralInputs: funeralInputs});
       }
     }
 
-    handleSaveChoice = (indexChoice) => {
-      const choices = {...this.state.choices};
-      choices[this.state.index] = indexChoice;
-      this.setState({choices});
+    handleSaveInput = (input) => {
+      this.setState({currentInput: input});
     }
 
     RenderBody = (props) => {
@@ -125,25 +140,41 @@ class Obseques extends Component {
         case 0: return (
           <ChoiceList 
             card={cards[this.state.index]}
-            callbackHandleSaveChoice={this.handleSaveChoice}
+            callbackHandleSaveInput={this.handleSaveInput}
+            key={0}
           />
         )
         case 1: return (
           <ChoiceList 
             card={cards[this.state.index]}
-            callbackHandleSaveChoice={this.handleSaveChoice} 
+            callbackHandleSaveInput={this.handleSaveInput}
+            key={1}
           />
         )
         case 2: return (
           <ChoiceList 
             card={cards[this.state.index]}
-            callbackHandleSaveChoice={this.handleSaveChoice} 
+            callbackHandleSaveInput={this.handleSaveInput} 
+            key={2}
           />
         )
         case 3: return (
           <ChoiceList 
             card={cards[this.state.index]}
-            callbackHandleSaveChoice={this.handleSaveChoice} 
+            callbackHandleSaveInput={this.handleSaveInput}
+            key={3}
+          />
+        )
+        case 4: return (
+          <InputList 
+            callbackHandleSaveInput={this.handleSaveInput}
+            key={4}
+          />
+        )
+        case 5: return (
+          <InputList 
+            callbackHandleSaveInput={this.handleSaveInput}
+            key={4}
           />
         )
       }
@@ -174,7 +205,7 @@ class ChoiceList extends Component {
 
   handleClickedCallback = (index) => {
     this.setState({ indexSelected: index });
-    this.props.callbackHandleSaveChoice(index);
+    this.props.callbackHandleSaveInput(index);
   }
 
   displayChoice = (choice, index) => {
@@ -218,4 +249,51 @@ class ChoiceItem extends Component {
   }
 }
 
-export default Obseques;
+class InputList extends Component {
+  state = {
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null
+  }
+
+  handleChange(e) {
+		let {name, value} = e.target
+
+		if (value === '') {
+			value = null
+		}
+
+		this.setState( { [name]: value } )
+  }
+  
+  render () {
+    return (
+      <div className={style.inputList}>
+        <label>1.
+            <input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
+        </label>
+        <label>2.
+          <input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
+        </label>
+        <label>3.
+          <input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
+        </label>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => ({
+	funeralInputs: state.funeralInputs,
+})
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setFuneralInputs: (funeralInputs) => {
+			dispatch(SET_FUNERAL_INPUTS(funeralInputs))
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Obseques);
