@@ -4,3 +4,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.button {
+  border: 1px solid #6264DB;
+  background: #EEF3F8;
+  border-radius: 5px;
+  width: 50vh;
+  height: 10vh;
+  margin-bottom: 3vh;
+}
+
+  .header {
+    font-size: 18px;
+  }

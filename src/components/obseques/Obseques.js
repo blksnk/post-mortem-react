@@ -15,12 +15,12 @@ const cards = [
 ]
 
 class Obseques extends Component {
-    state = {  
+    state = {
         index: 0,
     }
 
     render() {
-        return (  
+        return (
             <section className={style.wrapper}>
               <div className={style.title}>
                 <h1>{cards[this.state.index].title}</h1>
@@ -36,7 +36,6 @@ class Obseques extends Component {
                 }[this.state.index]}
               </div>
               <div className="footer">
-
               </div>
             </section>
         );
@@ -46,7 +45,17 @@ class Obseques extends Component {
 class ObsequesHome extends Component {
   render() {
     return (
-      <div>Obseques Home</div>
+    <div>
+    <button className={style.button}>
+      <div className = {style.header}>Test 1</div>
+    </button>
+   <button className={style.button}>
+      <div className = {style.header} >Test 2</div>
+    </button>
+     <button className={style.button}>
+      <div className = {style.header}>Obseques Home</div>
+    </button>
+     </div>
     )
   }
 }
@@ -58,5 +67,5 @@ class ObsequesCercueil extends Component {
     )
   }
 }
- 
+
 export default Obseques;
