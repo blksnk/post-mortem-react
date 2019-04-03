@@ -3,6 +3,7 @@ import joe from './joe.png'
 import joe2 from './joe2.png'
 import dotActive from './dot-active.svg'
 import dotInactive from './dot-inactive.svg'
+import {Redirect} from 'react-router-dom'
 
 import style from './OnBoarding.module.css'
 
@@ -37,6 +38,7 @@ const cards = [
 class OnBoarding extends Component {
     state = {  
         index: 0,
+        redirect: false,
     }
 
     displayCard = (card, index) => {
@@ -117,7 +119,9 @@ class OnBoarding extends Component {
                         null
                     } 
                 </div>
-                {this.state.index >= 4 ? <button id={style.start}>Commencer</button> : null}
+                {this.state.index >= 4 ? <button onClick={() => this.setState({redirect: true})} id={style.start}>Commencer</button> : null}
+
+                {this.state.redirect ? <Redirect to='/'/> : null}
             </section>
         );
     }
