@@ -105,6 +105,9 @@ const cards = [
     title: "Tes lieux rêvés pour tes obsèques",
     subtitle: "(3 choix possibles)",
     key: "locationList",
+  },
+  {
+    title: "Les obsèques de tes rêves",
   }
 ]
 
@@ -119,7 +122,7 @@ class Obseques extends Component {
       const card = cards[this.state.index];
       let nextIndex = 0;
       if(this.state.currentInput !== null) {
-        if('choices' in cards) {
+        if('choices' in card) {
           nextIndex = card.choices[this.state.currentInput].nextCard;
         } else {
           nextIndex = this.state.index + 1;
@@ -174,7 +177,7 @@ class Obseques extends Component {
         case 5: return (
           <InputList 
             callbackHandleSaveInput={this.handleSaveInput}
-            key={4}
+            key={5}
           />
         )
       }
@@ -251,10 +254,7 @@ class ChoiceItem extends Component {
 
 class InputList extends Component {
   state = {
-    firstName: null,
-    lastName: null,
-    email: null,
-    password: null
+    inputList: {},
   }
 
   handleChange(e) {
@@ -264,21 +264,26 @@ class InputList extends Component {
 			value = null
 		}
 
-		this.setState( { [name]: value } )
+    let inputList = this.state.inputList;
+    inputList[name] = value;
+    this.setState( { inputList: inputList } );
+    this.props.callbackHandleSaveInput(this.state.inputList);
   }
-  
+
+  displayInput = (index) => {
+      return (
+        <label>{index}.
+            <input name={'input-' + index}  type="text" onChange={(e) => this.handleChange(e)}/>
+        </label>
+      )
+  }
+
   render () {
     return (
       <div className={style.inputList}>
-        <label>1.
-            <input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
-        </label>
-        <label>2.
-          <input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
-        </label>
-        <label>3.
-          <input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
-        </label>
+        {this.displayInput(0)}
+        {this.displayInput(1)}
+        {this.displayInput(2)}
       </div>
     )
   }
