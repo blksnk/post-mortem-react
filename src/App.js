@@ -12,6 +12,7 @@ import TrustedIntro from './components/trusted/TrustedIntro'
 import LogIn from './components/login/LogIn'
 
 import OnBoarding from './components/onBoarding/OnBoarding'
+import Obseques from './components/obseques/Obseques'
 
 class App extends Component {
   render() {
@@ -27,6 +28,8 @@ class App extends Component {
           <Route exact path='/trusted/' component={TrustedIntro} />
 
        	  <Route exact path="/onboarding" component={OnBoarding}/>
+          <Route exact path="/obseques" component={Obseques}/>
+       	  <Route exact path="/" component={OnBoarding}/>
         </Switch>
 
         <ScreenTooBig/>
