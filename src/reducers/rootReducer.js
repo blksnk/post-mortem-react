@@ -33,6 +33,8 @@ const rootReducer = (state = initState, action) => {
 				...state,
 				loggedIn: false,
 				jwt: null,
+			}	
+		}		
 
 		case 'SET_FUNERAL_INPUTS': {
 			return {
