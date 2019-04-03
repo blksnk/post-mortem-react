@@ -3,9 +3,11 @@ import Logo from '../Logo.js'
 import btnStyle from '../buttons.module.css'
 import style from './LogIn.module.css'
 import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {SIGN_IN} from '../../actions/rootActions'
+import axios from 'axios'
 
-
-export default class LogIn extends Component {
+class LogIn extends Component {
 
 	constructor(props) {
 		super(props)
@@ -27,18 +29,33 @@ export default class LogIn extends Component {
 		this.setState( { [name]: value } )
 	}
 
-	handleSubmit() {
+	async handleSubmit() {
 		const {email, password} = this.state
 		if(!email && !password) return
 
-		//query db
+		if(!this.props.loggedIn) {
+			//query db
+			try {
+				const response = await axios.post('http://localhost:5000/sign-in', {
+					email,
+					password
+				})
 
-		//add jwt to localstorage
+				const {jwt} = response.data
 
-		//update store
+				//update store and localstorage
+				this.props.signIn(jwt)
 
-		//granted access, redirect
-		this.setState({redirect: true})
+				//granted access, redirect
+				this.setState({redirect: true})
+			}
+			catch(e) {
+				console.log('error login', e)
+			}
+		}
+		else {
+			console.log('already logged in')
+		}
 	}
 
 	render() {
@@ -66,3 +83,16 @@ export default class LogIn extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	loggedIn: state.loggedIn,
+	jwt: state.jwt
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	signIn: (jwt) => {
+		dispatch(SIGN_IN(jwt))
+	}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
