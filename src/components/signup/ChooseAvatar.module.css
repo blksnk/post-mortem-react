@@ -1,0 +1,20 @@
+.chooseAvatar {
+	text-align: center;
+}
+
+.img {
+	max-width: 120px;
+}
+
+.avatarWrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: space-around;
+}
+
+.avatarImg {
+	max-width: 120px;
+	min-width: 100px;
+}

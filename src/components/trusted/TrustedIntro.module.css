@@ -1,0 +1,35 @@
+.wrapper {
+
+}
+
+.svg {
+	margin-top: 46px;
+	position: relative;
+	top: 0;
+	left: 0;
+	padding:17px;
+}
+
+#title {
+	position: relative;
+	top: -1325px;
+	text-align: center;
+}
+
+.p {
+	position: relative;
+	font-family: Karla;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: normal;
+	text-align: center;
+	width: 246px;
+
+	color: #979797;
+}
+
+#p1 {
+	top: -1200px;
+	left: 88px;
+}

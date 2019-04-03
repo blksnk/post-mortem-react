@@ -1,0 +1,27 @@
+.inputLabel {
+	font-family: Karla;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: normal;
+	color: #A0AFBF;
+	width: 100vw;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 24px;
+}
+
+input {
+	background: #EEF3F8;
+	border-radius: 3px;
+	font-size: 14px;
+	width: 100%;
+	border: none;
+	display: block;
+	/*padding: 5px;*/
+	height: 35px;
+}
