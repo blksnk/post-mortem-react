@@ -1,21 +1,34 @@
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
+import axios from 'axios'
+import {connect} from 'react-redux'
+import {SIGN_IN} from '../../actions/rootActions'
 
 import Logo from '../Logo.js'
 import style from './SignUp.module.css'
 import btnStyle from '../buttons.module.css'
 
-export default class SignUp extends Component {
+const Input = ({ label, name, type, onChange }) => (
+  <label className={style.inputLabel}>
+  	{label}
+  	<input name={name} type={type} onChange={onChange}/>
+  </label>
+)
+
+class SignUp extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			firstName: null,
+			lastName: null,
 			email: null,
 			password: null,
 			redirect: false,
 			redirectLogin: false
 		}
+
+		// this.Input = this.Input.bind(this)
 	}
 
 	handleChange(e) {
@@ -28,40 +41,59 @@ export default class SignUp extends Component {
 		this.setState( { [name]: value } )
 	}
 
-	handleSubmit() {
-		const {firstName, email, password} = this.state
+	async handleSubmit() {
+		const {firstName, email, password, lastName} = this.state
 
 		if (firstName !==null && email !==null && password !==null) {
-			console.log('submit')
+			console.log('submit', email, password)
 
-			//axios...
-			//envoi db
+			//axios... only email and pwd bc backend isnt yet up to date
+			if	(!this.props.loggedIn) {
+				try {
+					const response = await axios.post('http://localhost:5000/sign-up', {
+						firstName,
+						lastName,
+						email,
+						password,
+					})
+					const {jwt} = response.data
+					console.log(jwt)
+					//push in store
+						this.props.signIn(jwt)
+						//redirect
+						this.setState({redirect: true})
+					//
+				}
+				catch (e) {
+					console.log(e)
+					console.log('user in db')
+				}
+			}
+			else {
+				console.log('already signed in')
+			}
 
-			//redirect
-			this.setState({redirect: true})
 		}
 		else return
 	}
 
+	
+
 	render() {
 
 		console.log(this.state)
+
+		const onChange = e => this.handleChange(e)
+
 		return (
 			<div className='signup-wrapper'>
 
 				<Logo />
 
-				<label className={style.inputLabel}>Prénom
-					<input name='firstName' type="text" onChange={(e) => this.handleChange(e)}/>
-				</label>
-
-				<label className={style.inputLabel}>Email
-					<input name='email' type="email" onChange={(e) => this.handleChange(e)}/>
-				</label>
-
-				<label className={style.inputLabel}>Mot de Passe
-					<input name='password' type="password" onChange={(e) => this.handleChange(e)}/>
-				</label>
+				<Input onChange={onChange} label="Prénom" type="text" name="firstName"/>
+				<Input onChange={onChange} label="Nom de famille" type="text" name="lastName"/>
+				<Input onChange={onChange} label="Email" type="email" name="email"/>
+				<Input onChange={onChange} label="Mot de passe" type="password" name="password"/>
 
 				<button className={btnStyle.bigBlue} onClick={() => this.handleSubmit()}>Créer un compte</button>
 				<button className={btnStyle.smallGrey} onClick={() => this.setState({redirectLogin: true})}>Se connecter</button>
@@ -72,3 +104,16 @@ export default class SignUp extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	loggedIn: state.loggedIn,
+	jwt: state.jwt
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	signIn: (jwt) => {
+		dispatch(SIGN_IN(jwt))
+	}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
