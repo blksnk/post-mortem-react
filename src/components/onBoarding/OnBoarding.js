@@ -43,7 +43,7 @@ class OnBoarding extends Component {
         return (
             <div id={'card-' + index} className={style.card} key={index}>
                 <div className={style.image}>
-                    <img src={card.image} alt="joe1"/>
+                    <img className={style.img} src={card.image} alt="joe1"/>
                     {this.state.index > 0 ? 
                         <button id={style.previousBtn} onClick={this.handlePreviousChange}>
                             <svg width="20" height="33" viewBox="0 0 20 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,13 +75,13 @@ class OnBoarding extends Component {
         if(index === this.state.index) {
             return (
                 <div className="dot active" key={index}>
-                    <img src={dotActive} alt='dot-active'></img>
+                    <img className={style.img} src={dotActive} alt='dot-active'></img>
                 </div>
             )
         } else {
             return (
                 <div className="dot" key={index}>
-                    <img src={dotInactive} alt='dot-inactive'></img>
+                    <img className={style.img} src={dotInactive} alt='dot-inactive'></img>
                 </div>
             )
         }

@@ -4,3 +4,51 @@
   align-items: center;
   justify-content: center;
 }
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.choiceList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 50vh;
+}
+
+.choiceItem {
+  width: 45%;
+  height: 30vw;
+  background: #EEF3F8;
+  border-radius: 5px;
+  margin-top: 5%;
+}
+
+.choiceTitle {
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #000000;
+}
+
+.choiceImage {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#nextBtn {
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(98, 100, 219);
+  color: white;
+  height: 25px;
+  font-size: 12px;
+  font-weight: bold;
+}
