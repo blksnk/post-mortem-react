@@ -15,19 +15,23 @@ const cards = [
     boxes: [
       {
         title: "Cercueil en bois de chêne",
-        image: joe
+        image: joe,
+        index: 0,
       },
       {
         title: "Cercueil en contreplaqué",
-        image: joe2
+        image: joe2,
+        index: 1,
       },
       {
         title: "Cercueil en bois recyclé",
-        image: joe
+        image: joe,
+        index: 2,
       },
       {
         title: "Cercueil en plastique",
-        image: joe2
+        image: joe2,
+        index: 3,
       }
     ]
   }
@@ -72,20 +76,43 @@ class ObsequesHome extends Component {
 }
 
 class ObsequesCercueil extends Component {
+  state = {
+    indexActive: -1,
+  }  
+
+  handleClickedCallback = (index) => {
+    this.setState({ indexActive: index});
+  }
+
   displayBox = (box, index) => {
     return (
-      <div className={style.choiceItem}>
-        <img className={style.choiceImage} src={box.image} />
-        <div className={style.choiceTitle}>{box.title}</div>
-      </div>
+      <ObsequeChoiceBox box={box} callbackHandleClicked={this.handleClickedCallback} indexActive={this.state.indexActive} key={index} />
     )
   }
+
   render() {
     const card = cards[this.props.index];
 
     return (
       <div className={style.choiceList}>
         {card.boxes.map(this.displayBox)}
+      </div>
+    )
+  }
+}
+
+class ObsequeChoiceBox extends Component {
+  handleClicked = (event) => {
+    this.props.callbackHandleClicked(this.props.box.index);
+  }
+
+  render () {
+    const isActive = (this.props.box.index === this.props.indexActive);
+
+    return (
+      <div className={style.choiceItem + (isActive? ' ' + style.isClicked : '')} onClick={this.handleClicked}>
+        <img className={style.choiceImage} src={this.props.box.image} />
+        <div className={style.choiceTitle}>{this.props.box.title}</div>
       </div>
     )
   }
