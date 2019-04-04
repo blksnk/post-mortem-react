@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import style from './OverlayCard.module.css'
-import bntStyle from '../buttons.module.css'
+import bntStyle from './buttons.module.css'
 
 export default class OverlayCard extends Component {
 	render() {

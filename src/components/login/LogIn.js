@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../global/Logo.js'
-import btnStyle from '../buttons.module.css'
+import btnStyle from '../global/buttons.module.css'
 import style from './LogIn.module.css'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'

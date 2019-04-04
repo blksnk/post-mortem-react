@@ -2,9 +2,9 @@ import React, { Component, } from 'react';
 import {Redirect} from 'react-router-dom'
 import Logo from '../global/Logo'
 import defaultImage from '../../ressources/icons/logo PM.png'
-import UploadProfilePic from '../UploadProfilePic'
+import UploadProfilePic from '../global/UploadProfilePic'
 
-import btnStyle from '../buttons.module.css'
+import btnStyle from '../global/buttons.module.css'
 import style from './ChooseAvatar.module.css'
 
 

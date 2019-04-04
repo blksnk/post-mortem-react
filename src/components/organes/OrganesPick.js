@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import style from './organes.module.css'
 
-import Navbar from '../Navbar'
+import Navbar from '../global/Navbar'
 import OrganesCard from './OrganesCard'
 
 const placeholderImg = 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-128.png'
@@ -37,6 +37,8 @@ export default class OrganesPick extends Component {
 			reins: false,
 			cornee: false,
 			intestin: false,
+			confirmation: false,
+			validate: false,
 		}
 	}
 
@@ -44,6 +46,23 @@ export default class OrganesPick extends Component {
 		for (let key in this.state) {
 			this.setState( { [key]: true } )
 		}
+	}
+
+	confirmSelection() {
+		//verify if at least one is selected
+		
+		//display confirmation
+		if(!this.state.confirmation) {
+			this.setState( { confirmation: true } )
+		}
+		else {
+			//if press again in confirmation, save to db
+			this.validate()
+		}
+	}
+
+	validate() {
+		console.log('validate')
 	}
 
 	selectComponent(name) {
@@ -73,7 +92,16 @@ export default class OrganesPick extends Component {
 						<button key={item.name} className={style.itemBtn} onClick={() => this.selectComponent(item.name)}>
 							<OrganesCard name={item.name} active={this.state[item.name]} image={item.image}/>
 						</button>
-						))}					
+						))}
+				</div>
+
+				<div className={style.bottom}>
+					{this.state.confirmation ? 
+						<button onClick={() => this.setState({confirmation: false})}>Retour</button>
+						: null
+					}
+
+					<button onClick={() => this.confirmSelection()}>Valider</button>
 				</div>
 			</section>
 		);
