@@ -26,34 +26,56 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: end;
   width: 100%;
+  margin-top: 5vh;
 }
 
 .choiceList {
   display: flex;
+  height: 50vh;
+}
+.choiceListColumn {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.choiceListRow {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  height: 50vh;
+}
+
+.choiceItemLarge {
+  width: 80vw;
+}
+
+.choiceItemSmall {
+  width: 35vw
 }
 
 .choiceItem {
-  width: 40%;
-  height: 35vw;
-  background: #EEF3F8;
+  height: 24vw;
   border-radius: 5px;
-  margin-top: 5%;
+  margin-top: 2vh;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .choiceTitle {
   font-family: Roboto;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   color: #000000;
+}
+
+.choiceSubtitle {
+  font-style: normal;
 }
 
 .choiceImage {
@@ -68,21 +90,15 @@
   border: 1px solid #6264DB;
 }
 
-.isClickedIcon {
-  position: absolute;
-  top: 4%;
-  right: 4%;
-}
-
 #nextBtn {
+  background: #5D1AD5;
   border: none;
   border-radius: 8px;
-  background-color: rgb(98, 100, 219);
   color: white;
-  height: 25px;
-  font-size: 12px;
-  font-weight: bold;
   cursor: pointer;
+  font-size: 20px;
+  font-family: Karla;
+  padding: 6px 10px;
 }
 
 .inputList {
@@ -91,8 +107,50 @@
 }
 
 .title {
-  font-family: Odin Rounded;
+  font-family: Karla;
   font-size: 35px;
   color: #EA378E;
   text-align: left;
+  margin-top: 6vh;
+  margin-bottom: 4vh;
+}
+
+.cardTitle {
+  font-family: Roboto;
+  font-size: 16px;
+  text-align: left;
+  color: black;
+  margin-bottom: 4vh;
+}
+
+.pinkBorder {
+  border: 2px solid #EA378E;
+}
+
+.pinkBackground {
+  background-color: #EA378E;
+}
+
+.greenBorder {
+  border: 2px solid #0FCBA7;
+}
+
+.greenBackground {
+  background-color: #0FCBA7;
+}
+
+.yellowBorder {
+  border: 2px solid #FFC70E;
+}
+
+.yellowBackground {
+  background-color: #FFC70E;
+}
+
+.redBorder {
+  border: 2px solid #F8634B;
+}
+
+.redBackground {
+  background-color: #F8634B;
 }

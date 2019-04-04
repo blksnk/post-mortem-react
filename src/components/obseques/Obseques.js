@@ -12,10 +12,13 @@ const cards = [
     title: "Les obsèques de tes rêves",
     subtitle: "",
     key: "funeralType",
+    listStyle: "column",
+    borderColor: style.pinkBorder,
+    backgroundColor: style.pinkBackground,
     choices: [
       {
         title: "Inhumation",
-        subtitle: "(Enterrer)",
+        subtitle: "(6 pieds sous terre)",
         image: null,
         nextCard: 1,
       },
@@ -37,6 +40,9 @@ const cards = [
     title: "Cercueil de tes rêves ?",
     subtitle: "",
     key: "coffinType",
+    listStyle: "row",
+    borderColor: style.greenBorder,
+    backgroundColor: style.greenBackground,
     choices: [
       {
         title: "Cercueil en bois de chêne",
@@ -63,6 +69,9 @@ const cards = [
   {
     title: "La tombe de tes rêves ?",
     key: "tombType",
+    listStyle: "row",
+    borderColor: style.yellowBorder,
+    backgroundColor: style.yellowBackground,
     choices: [
       {
         title: "Caveau",
@@ -84,6 +93,9 @@ const cards = [
   {
     title: "Urne tes rêves ?",
     key: "urnType",
+    listStyle: "row",
+    borderColor: style.redBorder,
+    backgroundColor: style.redBackground,
     choices: [
       {
         title: "Urne en composite",
@@ -181,6 +193,8 @@ class Obseques extends Component {
             key={5}
           />
         )
+        default: 
+          return null;
       }
     }
     
@@ -190,16 +204,16 @@ class Obseques extends Component {
               <Navbar />
               <div className={style.cardWrapper}>
                 <div className={style.title}>
-                  <h1>Les obsèques de tes rêves</h1>
+                  <div>Les obsèques de tes rêves</div>
                 </div>
                 <div className={style.cardTitle}>{cards[this.state.index].title}</div>
-                <div className={style.cardSubtitle}>{cards[this.state.index].subtitle}</div>
+                {cards[this.state.index].subtitle? <div className={style.cardSubtitle}>{cards[this.state.index].subtitle}</div> : null}
                 <div className="body">
                   <this.RenderBody/>
                 </div>
 
                 <div className={style.footer}>
-                <button id={style.nextBtn} onClick={this.handleNextCard}>Suivant</button>
+                <button id={style.nextBtn} onClick={this.handleNextCard}>Valider</button>
                 </div>
               </div>
             </section>
@@ -225,13 +239,16 @@ class ChoiceList extends Component {
         isSelected={this.state.indexSelected === index} 
         key={index} 
         indexChoice={index} 
+        itemStyle={this.props.card.listStyle === 'row' ? 'small' : 'large'}
+        itemColor={this.props.card.borderColor}
+        itemBackground={this.props.card.backgroundColor}
       />
     )
   }
 
   render() {
     return (
-      <div className={style.choiceList}>
+      <div className={style.choiceList + ' ' + (this.props.card.listStyle === 'row' ? style.choiceListRow : style.choiceListColumn )}>
         {this.props.card.choices.map(this.displayChoice)}
       </div>
     )
@@ -249,10 +266,10 @@ class ChoiceItem extends Component {
 
   render () {
     return (
-      <div className={style.choiceItem + (this.props.isSelected? ' ' + style.isClicked : '')} onClick={this.handleClicked}>
-        {this.props.isSelected? <img className={style.isClickedIcon} src={success} />: null}
+      <div className={style.choiceItem + ' ' + this.props.itemColor + (this.props.isSelected? ' ' + this.props.itemBackground : '') + ' ' + (this.props.itemStyle === 'small' ? style.choiceItemSmall : style.choiceItemLarge)} onClick={this.handleClicked}>
         {this.props.choice.image?  <img className={style.choiceImage} src={this.props.choice.image} /> : null}
         <div className={style.choiceTitle}>{this.props.choice.title}</div>
+        {this.props.choice.subtitle? <div className={style.choiceSubtitle}>{this.props.choice.subtitle}</div> : null}
       </div>
     )
   }
