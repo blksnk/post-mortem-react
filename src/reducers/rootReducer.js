@@ -2,6 +2,14 @@ const initState = {
 	loggedIn: false,
 	jwt: null,
 	profilePicPreviewBase64: null,
+	isOpened: false,
+	isAddOwnerOpened: false,
+	property: {
+		title: '',
+		img: '',
+		owners: '',
+	},
+	owners: [],
 	funeralInputs: {},
 }
 
@@ -36,6 +44,22 @@ const rootReducer = (state = initState, action) => {
 			}	
 		}		
 
+		case 'IS_OPENED': {
+			const toogle = !state.isOpened
+			console.log(toogle, 'opened')
+			return {
+				...state,
+				isOpened: toogle
+			}
+		}
+		case 'IS_ADD_OWNER_OPENED': {
+			const toogle = !state.isAddOwnerOpened
+			console.log(toogle, 'owner')
+			return {
+				...state,
+				isAddOwnerOpened: toogle
+			}
+		}
 		case 'SET_FUNERAL_INPUTS': {
 			return {
 				...state,
