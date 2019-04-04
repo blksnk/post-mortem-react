@@ -1,0 +1,37 @@
+.wrapper {
+
+}
+
+.button {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	border: 1px solid black;
+	margin: 20px 10px;
+	text-decoration: none;
+}
+
+.image {
+	width: 100px;
+}
+
+.top {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.textWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.action {
+	color: black;
+	position: unset;
+	align-self: center;
+}
