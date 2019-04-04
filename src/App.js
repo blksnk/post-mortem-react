@@ -9,12 +9,15 @@ import ChooseAvatar from './components/signup/ChooseAvatar'
 import TrustedPerson from './components/signup/TrustedPerson'
 
 import OnBoarding from './components/onBoarding/OnBoarding.js'
+import Testament from './components/testament/Testament';
+import AddProperty from './components/testament/AddProperty';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Switch>
+          <Route exact path="/testament" component={Testament} />    
           <Route exact path="/signup/avatar" component={ChooseAvatar} />  
           <Route exact path='/signup/trusted' component={TrustedPerson} />       
           <Route exact path="/signup" component={SignUp} />
