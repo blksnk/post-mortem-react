@@ -35,7 +35,7 @@ const cards = [
 ]
 
 class OnBoarding extends Component {
-    state = {  
+    state = {
         index: 0,
     }
 
@@ -43,28 +43,29 @@ class OnBoarding extends Component {
         return (
             <div id={'card-' + index} className={style.card} key={index}>
                 <div className={style.image}>
-                    <img src={card.image} alt="joe1"/>
-                    {this.state.index > 0 ? 
+
+                    <img className={style.img} src={card.image} alt="joe1"/>
+                    {this.state.index > 0 ?
                         <button id={style.previousBtn} onClick={this.handlePreviousChange}>
                             <svg width="20" height="33" viewBox="0 0 20 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.1943 0L20 3.8775L7.63833 16.5L20 29.1225L16.1943 33L0 16.5L16.1943 0Z" fill="#CAD4DF"/>
                             </svg>
-                        </button> 
-                        : 
+                        </button>
+                        :
                         null
                     }
-                    {this.state.index < 4 ? 
+                    {this.state.index < 4 ?
                         <button id={style.nextBtn} onClick={this.handleNextChange}>
                             <svg width="20" height="33" viewBox="0 0 20 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.80567 33L0 29.1225L12.3617 16.5L0 3.8775L3.80567 0L20 16.5L3.80567 33Z" fill="#CAD4DF"/>
                             </svg>
-                        </button> 
-                        : 
+                        </button>
+                        :
                         null
                     }
                 </div>
                 <div className={style.text}>
-                    <h1>{card.title}</h1>
+                    <h1 className={style.cardTitle}>{card.title}</h1>
                     <p>{card.subtitle}</p>
                 </div>
             </div>
@@ -75,13 +76,13 @@ class OnBoarding extends Component {
         if(index === this.state.index) {
             return (
                 <div className="dot active" key={index}>
-                    <img src={dotActive} alt='dot-active'></img>
+                    <img className={style.img} src={dotActive} alt='dot-active'></img>
                 </div>
             )
         } else {
             return (
                 <div className="dot" key={index}>
-                    <img src={dotInactive} alt='dot-inactive'></img>
+                    <img className={style.img} src={dotInactive} alt='dot-inactive'></img>
                 </div>
             )
         }
@@ -104,23 +105,23 @@ class OnBoarding extends Component {
     }
 
     render() {
-        return (  
+        return (
             <section className={style.wrapper}>
                 <div className={style.onBoarding}>
                     {cards.map(this.displayCard)}
                 </div>
                 <div className={style.pagination}>
                     {
-                        this.state.index < 4 ? 
+                        this.state.index < 4 ?
                         cards.map(this.displayPagination)
                         :
                         null
-                    } 
+                    }
                 </div>
                 {this.state.index >= 4 ? <button id={style.start}>Commencer</button> : null}
             </section>
         );
     }
 }
- 
+
 export default OnBoarding;

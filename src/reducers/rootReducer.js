@@ -9,10 +9,12 @@ const initState = {
 		owners: '',
 	},
 	owners: [],
+	funeralInputs: {},
 }
 
 const rootReducer = (state = initState, action) => {
-	console.log('rootReducer update')
+	console.log('rootReducer update');
+	console.log(state);
 	switch(action.type) {
 		case 'SET_PROFILE_PIC_PREVIEW': {
 			return {
@@ -34,6 +36,12 @@ const rootReducer = (state = initState, action) => {
 			return {
 				...state,
 				isAddOwnerOpened: toogle
+			}
+		}
+		case 'SET_FUNERAL_INPUTS': {
+			return {
+				...state,
+				funeralInputs: action.funeralInputs,
 			}
 		}
 		default: return state
