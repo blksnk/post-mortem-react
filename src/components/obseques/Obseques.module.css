@@ -44,19 +44,23 @@
 .choiceListRow {
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .choiceItemLarge {
+  font-family: Roboto;
   width: 80vw;
+  font-size: 20px;
 }
 
 .choiceItemSmall {
-  width: 35vw
+  width: 37vw;
+  font-family: Karla;
+  font-size: 16px;
 }
 
 .choiceItem {
-  height: 24vw;
+  height: 38vw;
   border-radius: 5px;
   margin-top: 2vh;
   cursor: pointer;
@@ -67,23 +71,19 @@
 }
 
 .choiceTitle {
-  font-family: Roboto;
   font-weight: bold;
-  font-size: 20px;
   text-align: center;
   color: #000000;
 }
 
 .choiceSubtitle {
-  font-style: normal;
+  font-weight: lighter;
 }
 
 .choiceImage {
   height: 50%;
   width: 100%;
   object-fit: cover;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
 }
 
 .isClicked {
@@ -113,6 +113,7 @@
   text-align: left;
   margin-top: 6vh;
   margin-bottom: 4vh;
+  width: 75%;
 }
 
 .cardTitle {
@@ -123,6 +124,60 @@
   margin-bottom: 4vh;
 }
 
+.cardImage {
+  position: absolute;
+  top: 6vh;
+  z-index: -1;
+  right: 0;
+}
+
+.inputLabel {
+  text-align: left;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 2vh;
+}
+
+.summaryList {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.summaryBox {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 1vh;
+}
+
+.summaryBoxHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.funeralTypeBox {
+  background: #60D2F1;
+}
+
+.musicBox {
+  background: #EEF3F8;
+}
+
+.locationBox {
+  background: #EEF3F8;
+}
+
+.editIcon {
+  cursor: pointer;
+}
 .pinkBorder {
   border: 2px solid #EA378E;
 }

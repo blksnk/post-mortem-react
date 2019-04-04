@@ -3,18 +3,26 @@ import { connect } from 'react-redux'
 import {SET_FUNERAL_INPUTS} from '../../actions/rootActions'
 import style from './Obseques.module.css'
 import Navbar from '../Navbar'
-import joe from '../onBoarding/joe.png'
-import joe2 from '../onBoarding/joe2.png'
-import success from './success.svg'
+import joePink from './icons/joePink.svg'
+import joeYellow from './icons/joeYellow.svg'
+import joeGreen from './icons/joeGreen.svg'
+import joeRed from './icons/joeRed.svg'
+import joeBlue from './icons/joeBlue.svg'
+import joeGrey from './icons/joeGrey.svg'
+import coffin1 from './icons/coffin1.svg'
+import coffin2 from './icons/coffin2.svg'
+import coffin3 from './icons/coffin3.svg'
+import editIcon from './icons/editIcon.svg'
+
 
 const cards = [
   {
     title: "Les obsèques de tes rêves",
-    subtitle: "",
     key: "funeralType",
     listStyle: "column",
     borderColor: style.pinkBorder,
     backgroundColor: style.pinkBackground,
+    image: joePink,
     choices: [
       {
         title: "Inhumation",
@@ -37,41 +45,37 @@ const cards = [
     ]
   },
   {
-    title: "Cercueil de tes rêves ?",
-    subtitle: "",
+    title: "Jusqu'au bout tu seras maître de tes choix",
     key: "coffinType",
     listStyle: "row",
     borderColor: style.greenBorder,
     backgroundColor: style.greenBackground,
+    image: joeGreen,
     choices: [
       {
         title: "Cercueil en bois de chêne",
-        image: joe,
+        image: coffin1,
         nextCard: 2,
       },
       {
-        title: "Cercueil en contreplaqué",
-        image: joe2,
+        title: "Cercueil bois recyclable",
+        image: coffin2,
         nextCard: 2,
       },
       {
-        title: "Cercueil en bois recyclé",
-        image: joe,
+        title: "Cercueil noir",
+        image: coffin3,
         nextCard: 2,
       },
-      {
-        title: "Cercueil en plastique",
-        image: joe2,
-        nextCard: 2,
-      }
     ]
   },
   {
-    title: "La tombe de tes rêves ?",
+    title: "Jusqu'au bout tu seras maître de tes choix",
     key: "tombType",
     listStyle: "row",
     borderColor: style.yellowBorder,
     backgroundColor: style.yellowBackground,
+    image: joeYellow,
     choices: [
       {
         title: "Caveau",
@@ -91,11 +95,12 @@ const cards = [
     ]
   },
   {
-    title: "Urne tes rêves ?",
+    title: "Jusqu'au bout tu seras maître de tes choix",
     key: "urnType",
     listStyle: "row",
     borderColor: style.redBorder,
     backgroundColor: style.redBackground,
+    image: joeRed,
     choices: [
       {
         title: "Urne en composite",
@@ -110,14 +115,44 @@ const cards = [
     ]
   },
   {
-    title: "Choisis les musiques pour une meilleure cérémonie",
-    subtitle: "(3 choix possibles)",
+    title: "Choisis tes musiques préférées pour une meilleure cérémonie (3 choix possibles)",
     key: "musicList",
+    image: joeBlue,
+    inputs: [
+      {
+        label: "Musique 1",
+        placeholder: "",
+      },
+      {
+        label: "Musique 2",
+        placeholder: "",
+      },
+      {
+        label: "Musique 3",
+        placeholder: "",
+      },
+      
+    ]
   },
   {
-    title: "Tes lieux rêvés pour tes obsèques",
-    subtitle: "(3 choix possibles)",
+    title: "Choisis tes lieux rêvés où tu aimerais finir tes jours (3 choix possibles)",
     key: "locationList",
+    image: joeGrey,
+    inputs: [
+      {
+        label: "",
+        placeholder: "",
+      },
+      {
+        label: "",
+        placeholder: "",
+      },
+      {
+        label: "",
+        placeholder: "",
+      },
+      
+    ]
   },
   {
     title: "Les obsèques de tes rêves",
@@ -126,7 +161,7 @@ const cards = [
 
 class Obseques extends Component {
     state = {
-        index: 0,
+        index: 6,
         funeralInputs: {},
         currentInput: null,
     }
@@ -183,14 +218,22 @@ class Obseques extends Component {
         )
         case 4: return (
           <InputList 
+            card={cards[this.state.index]}
             callbackHandleSaveInput={this.handleSaveInput}
             key={4}
           />
         )
         case 5: return (
           <InputList 
+            card={cards[this.state.index]}
             callbackHandleSaveInput={this.handleSaveInput}
             key={5}
+          />
+        )
+        case 6: return (
+          <SummaryList 
+            callbackHandleSaveInput={this.handleSaveInput}
+            key={6}
           />
         )
         default: 
@@ -206,6 +249,7 @@ class Obseques extends Component {
                 <div className={style.title}>
                   <div>Les obsèques de tes rêves</div>
                 </div>
+                <div className={style.cardImage}><img src={cards[this.state.index].image} /></div>
                 <div className={style.cardTitle}>{cards[this.state.index].title}</div>
                 {cards[this.state.index].subtitle? <div className={style.cardSubtitle}>{cards[this.state.index].subtitle}</div> : null}
                 <div className="body">
@@ -293,10 +337,10 @@ class InputList extends Component {
     this.props.callbackHandleSaveInput(this.state.inputList);
   }
 
-  displayInput = (index) => {
+  displayInput = (input, index) => {
       return (
-        <label>{index}.
-            <input name={'input-' + index}  type="text" onChange={(e) => this.handleChange(e)}/>
+        <label className={style.inputLabel}>{input.label}
+            <input name={'input-' + index}  placeholder={input.placeholder} type="text" onChange={(e) => this.handleChange(e)}/>
         </label>
       )
   }
@@ -304,9 +348,35 @@ class InputList extends Component {
   render () {
     return (
       <div className={style.inputList}>
-        {this.displayInput(0)}
-        {this.displayInput(1)}
-        {this.displayInput(2)}
+        {this.props.card.inputs.map(this.displayInput)}
+      </div>
+    )
+  }
+}
+
+class SummaryList extends Component {
+  render () {
+    return (
+      <div className={style.summaryList}>
+        <div className={style.funeralTypeBox + ' ' + style.summaryBox}>
+          <div className={style.summaryBoxHeader}>
+            <div>Inhumation</div>
+            <div className={style.editIcon}><img src={editIcon} alt="Icône de modification" /></div>
+          </div>
+        </div>
+        <div className={style.funeralTypeDetailsBox}></div>
+        <div className={style.musicBox + ' ' + style.summaryBox}>
+          <div className={style.summaryBoxHeader}>
+            <div>Musique</div>
+            <div className={style.editIcon}><img src={editIcon} alt="Icône de modification" /></div>
+          </div>
+        </div>
+        <div className={style.locationBox + ' ' + style.summaryBox}>
+          <div className={style.summaryBoxHeader}>
+            <div>Lieux</div>
+            <div className={style.editIcon}><img src={editIcon} alt="Icône de modification" /></div>
+          </div>
+        </div>
       </div>
     )
   }
