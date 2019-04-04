@@ -1,0 +1,78 @@
+.Title {
+  font-size: 30px;
+  line-height: normal;
+  text-align: center;
+  color: #EA378E;
+  margin-top: 51px;
+  font-weight: bold;
+
+}
+
+.description {
+  font-family: Karla;
+  font-size: 20px;
+  width: 80vw;
+  margin: auto;
+  margin-top : 42px;
+
+}
+
+.lineCapTuto {
+  position: absolute;
+  display: flex;
+  left:0;
+  right:0;
+  margin:auto;
+  z-index: -10;
+}
+
+.svgForm {
+  position: relative;
+  margin-bottom: 45vh;
+  max-height: 40vh;
+  width: 35vh;
+  left: 5px;
+  float: left;
+
+}
+
+.svgList:first-of-type  {
+  margin-top: 100vh;
+}
+
+.titleSVG {
+  font-family: Odin Rounded;
+  font-size: 30px;
+  line-height: normal;
+  text-align: center;
+  font-weight: bold;
+}
+
+.textSVG {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: normal;
+  margin-top : 42px;
+
+}
+
+.svgFile {
+    left: 0;
+    right: 0;
+    z-index: -1;
+    position: absolute;
+    top: -10vh;
+}
+
+
+.svgFormRight {
+  position: relative;
+  margin-top: 60px;
+  max-height: 40vh;
+  width: 35vh;
+  left: 5px;
+  float: right;
+
+}

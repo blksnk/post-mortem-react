@@ -18,7 +18,7 @@ import OrganesChoice from './components/organes/OrganesChoice'
 import OrganesRefus from './components/organes/OrganesRefus'
 import OrganesPick from './components/organes/OrganesPick'
 import PopUp from './components/global/PopUp'
-import Tuto from './components/global/Tuto'
+import TutoObseques from './components/global/Tuto'
 
 class App extends Component {
   render() {
@@ -30,7 +30,7 @@ class App extends Component {
           <Route exact path='/signup/trusted' component={TrustedPerson} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup/avatar" component={ChooseAvatar} />
-          <Route exact path="/tuto" component={Tuto} />
+          <Route exact path="/tuto/obseques" component={TutoObseques} />
 
 
           <Route exact path='/login' component={LogIn}/>
