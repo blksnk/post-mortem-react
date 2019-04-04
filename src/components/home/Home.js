@@ -31,7 +31,7 @@ const testArray = [
 		image,
 		title: `Don d'organes`,
 		emptyState: 'Tu n’as pas encore décidé si tu donnais tes organes ou non.',
-		url: '/don',
+		url: '/organes',
 	},
 ]
 
