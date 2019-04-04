@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import ScreenTooBig from './components/ScreenTooBig'
 
+import Home from './components/home/Home'
+
 import SignUp from './components/signup/SignUp'
 import ChooseAvatar from './components/signup/ChooseAvatar'
 import TrustedPerson from './components/trusted/TrustedPerson'
@@ -27,6 +29,8 @@ class App extends Component {
           <Route exact path='/trusted/' component={TrustedIntro} />
 
        	  <Route exact path="/onboarding" component={OnBoarding}/>
+
+          <Route exact path='/' component={Home}/>
         </Switch>
 
         <ScreenTooBig/>
