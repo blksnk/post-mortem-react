@@ -17,20 +17,24 @@ import OrganesIntro from './components/organes/OrganesIntro'
 import OrganesChoice from './components/organes/OrganesChoice'
 import OrganesRefus from './components/organes/OrganesRefus'
 import OrganesPick from './components/organes/OrganesPick'
+import PopUp from './components/global/PopUp'
+import Tuto from './components/global/Tuto'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/testament" component={Testament} />    
-          <Route exact path="/signup/avatar" component={ChooseAvatar} />  
-          <Route exact path='/signup/trusted' component={TrustedPerson} />       
+          <Route exact path="/testament" component={Testament} />
+          <Route exact path="/signup/avatar" component={ChooseAvatar} />
+          <Route exact path='/signup/trusted' component={TrustedPerson} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/signup/avatar" component={ChooseAvatar} />  
+          <Route exact path="/signup/avatar" component={ChooseAvatar} />
+          <Route exact path="/tuto" component={Tuto} />
+
 
           <Route exact path='/login' component={LogIn}/>
-             
+
           <Route exact path='/trusted/add' component={TrustedPerson} />
           <Route exact path='/trusted/' component={TrustedIntro} />
 
