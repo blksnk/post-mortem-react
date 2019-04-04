@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {SET_FUNERAL_INPUTS} from '../../actions/rootActions'
 import style from './Obseques.module.css'
+import Navbar from '../Navbar'
 import joe from '../onBoarding/joe.png'
 import joe2 from '../onBoarding/joe2.png'
 import success from './success.svg'
@@ -186,15 +187,20 @@ class Obseques extends Component {
     render() {
         return (
             <section className={style.wrapper}>
-              <div className={style.title}>
-                <h1>{cards[this.state.index].title}</h1>
-              </div>
-              <div className="body">
-                <this.RenderBody/>
-              </div>
+              <Navbar />
+              <div className={style.cardWrapper}>
+                <div className={style.title}>
+                  <h1>Les obsèques de tes rêves</h1>
+                </div>
+                <div className={style.cardTitle}>{cards[this.state.index].title}</div>
+                <div className={style.cardSubtitle}>{cards[this.state.index].subtitle}</div>
+                <div className="body">
+                  <this.RenderBody/>
+                </div>
 
-              <div className={style.footer}>
-              <button id={style.nextBtn} onClick={this.handleNextCard}>Suivant</button>
+                <div className={style.footer}>
+                <button id={style.nextBtn} onClick={this.handleNextCard}>Suivant</button>
+                </div>
               </div>
             </section>
         );

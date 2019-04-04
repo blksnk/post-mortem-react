@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.cardWrapper {
+  margin-right: 10vw;
+  margin-left: 10vw;
 }
 
 .button {
@@ -84,4 +88,11 @@
 .inputList {
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  font-family: Odin Rounded;
+  font-size: 35px;
+  color: #EA378E;
+  text-align: left;
 }
