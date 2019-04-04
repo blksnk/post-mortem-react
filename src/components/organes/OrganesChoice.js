@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import Navbar from '../Navbar'
+import Navbar from '../global/Navbar'
 
 export default class OrganesChoice extends Component {
 	render() {

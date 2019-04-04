@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {SET_PROFILE_PIC_PREVIEW} from '../actions/rootActions'
+import {SET_PROFILE_PIC_PREVIEW} from '../../actions/rootActions'
 
 import style from './UploadProfilePic.module.css'
 

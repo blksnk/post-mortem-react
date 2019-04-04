@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import OverlayCard from '../global/OverlayCard'
 
-import Navbar from '../Navbar'
+import Navbar from '../global/Navbar'
 
 
 export default class OrganesRefus extends Component {
