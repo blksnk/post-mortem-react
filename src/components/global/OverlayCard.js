@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import style from './OverlayCard.module.css'
 import bntStyle from '../buttons.module.css'
 
@@ -15,7 +15,12 @@ export default class OverlayCard extends Component {
 
 					<p className={style.subtitle}>{this.props.subtitle}</p>
 
-					<NavLink className={`${bntStyle.bigBlue} ${style.btn}`} to={this.props.url}>{this.props.button}</NavLink>
+					<Link className={`${bntStyle.bigBlue} ${style.btn}`} to={this.props.url}>{this.props.button}</Link>
+
+					{this.props.homeLink ? 
+						<Link to='/'>Aller à l'accueil</Link>
+						: null
+					}
 				</div>
 			</div>
 		);
