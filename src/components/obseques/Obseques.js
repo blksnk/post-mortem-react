@@ -30,18 +30,21 @@ const cards = [
         subtitle: "(6 pieds sous terre)",
         image: null,
         nextCard: 1,
+        endSection: false,
       },
       {
         title: "Crémation",
         subtitle: "(Partir en fumée)",
         image: null,
         nextCard: 3,
+        endSection: false,
       },
       {
         title: "Don à la science",
         subtitle: "(Comme Dr Maboul)",
         image: null,
         nextCard: 4,
+        endSection: true,
       },
     ]
   },
@@ -57,16 +60,19 @@ const cards = [
         title: "Cercueil en bois de chêne",
         image: coffin1,
         nextCard: 2,
+        endSection: false,
       },
       {
         title: "Cercueil bois recyclable",
         image: coffin2,
         nextCard: 2,
+        endSection: false,
       },
       {
         title: "Cercueil noir",
         image: coffin3,
         nextCard: 2,
+        endSection: false,
       },
     ]
   },
@@ -81,17 +87,20 @@ const cards = [
       {
         title: "Caveau",
         subtitle: "(pour toi et toute ta famille)",
-        nextCard: 4
+        nextCard: 4,
+        endSection: true,
       },
       {
         title: "Tombe pleine terre",
         subtitle: "(1 personne max)",
-        nextCard: 4
+        nextCard: 4,
+        endSection: true,
       },
       {
         title: "L'enfeu",
         subtitle: "(spécial pour les sudistes)",
-        nextCard: 4
+        nextCard: 4,
+        endSection: true,
       }
     ]
   },
@@ -107,11 +116,13 @@ const cards = [
         title: "Urne en composite",
         subtitle: "(pour toi et toute ta famille)",
         nextCard: 4,
+        endSection: true,
       },
       {
         title: "Urne recyclable",
         subtitle: "(pour toi et toute ta famille)",
         nextCard: 4,
+        endSection: true,
       }
     ]
   },
@@ -165,6 +176,8 @@ class Obseques extends Component {
         index: 0,
         funeralInputs: {},
         currentInput: null,
+        currentInputValue: null,
+        editMode: false,
     }
 
     handleNextCard = (event) => {
@@ -172,26 +185,45 @@ class Obseques extends Component {
       let nextIndex = 0;
       if(this.state.currentInput !== null) {
         if('choices' in card) {
-          nextIndex = card.choices[this.state.currentInput].nextCard;
+          if(this.state.currentInput >= 0) {
+            console.log(this.state.currentInput);
+            let choice = card.choices[this.state.currentInput];
+            if(this.state.editMode && choice.endSection) {
+              nextIndex = 6;
+            } else {
+              nextIndex = choice.nextCard;
+            }
+          }   
         } else {
-          nextIndex = this.state.index + 1;
+          if(this.state.editMode) {
+            nextIndex = 6;
+          } else {
+            nextIndex = this.state.index + 1;
+          }
         }
         this.setState({index: nextIndex, currentInput: null});
         let funeralInputs = this.state.funeralInputs;
-        funeralInputs[card.key] = this.state.currentInput;
+        funeralInputs[card.key] = this.state.currentInputValue;
         this.props.setFuneralInputs({funeralInputs: funeralInputs});
       }
     }
 
-    handleSaveInput = (input) => {
-      this.setState({currentInput: input});
+    handleSaveInput = (index, input) => {
+      this.setState({currentInput: index, currentInputValue: input});
+    }
+
+    handleEdit = (targetPage) => {
+      this.setState({ index: targetPage, currentInput: null, editMode: true });
     }
 
     RenderBody = (props) => {
+      const key = cards[this.state.index].key;
+      const inputs = (key in this.state.funeralInputs) ? this.state.funeralInputs[key] : null;
       switch(this.state.index) {
         case 0: return (
           <ChoiceList 
             card={cards[this.state.index]}
+            inputs={inputs}
             callbackHandleSaveInput={this.handleSaveInput}
             key={0}
           />
@@ -199,6 +231,7 @@ class Obseques extends Component {
         case 1: return (
           <ChoiceList 
             card={cards[this.state.index]}
+            inputs={inputs}
             callbackHandleSaveInput={this.handleSaveInput}
             key={1}
           />
@@ -206,6 +239,7 @@ class Obseques extends Component {
         case 2: return (
           <ChoiceList 
             card={cards[this.state.index]}
+            inputs={inputs}
             callbackHandleSaveInput={this.handleSaveInput} 
             key={2}
           />
@@ -213,27 +247,33 @@ class Obseques extends Component {
         case 3: return (
           <ChoiceList 
             card={cards[this.state.index]}
+            inputs={inputs}
             callbackHandleSaveInput={this.handleSaveInput}
             key={3}
           />
         )
-        case 4: return (
-          <InputList 
+        case 4: 
+          return (
+          <InputList
             card={cards[this.state.index]}
+            inputs={inputs}
             callbackHandleSaveInput={this.handleSaveInput}
             key={4}
           />
         )
-        case 5: return (
+        case 5: 
+          return (
           <InputList 
             card={cards[this.state.index]}
+            inputs={inputs}
             callbackHandleSaveInput={this.handleSaveInput}
             key={5}
           />
         )
         case 6: return (
           <SummaryList 
-            callbackHandleSaveInput={this.handleSaveInput}
+            funeralInputs={this.state.funeralInputs}
+            callbackHandleEdit={this.handleEdit}
             key={6}
           />
         )
