@@ -181,6 +181,7 @@ class Obseques extends Component {
             key={5}
           />
         )
+        default: return
       }
     }
     
