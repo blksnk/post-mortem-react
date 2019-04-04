@@ -11,6 +11,7 @@ import TrustedPerson from './components/trusted/TrustedPerson'
 import TrustedIntro from './components/trusted/TrustedIntro'
 import LogIn from './components/login/LogIn'
 import OnBoarding from './components/onBoarding/OnBoarding'
+import Testament from './components/testament/Testament';
 import Obseques from './components/obseques/Obseques'
 import OrganesIntro from './components/organes/OrganesIntro'
 import OrganesChoice from './components/organes/OrganesChoice'
@@ -22,6 +23,9 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
+          <Route exact path="/testament" component={Testament} />    
+          <Route exact path="/signup/avatar" component={ChooseAvatar} />  
+          <Route exact path='/signup/trusted' component={TrustedPerson} />       
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup/avatar" component={ChooseAvatar} />  
 
