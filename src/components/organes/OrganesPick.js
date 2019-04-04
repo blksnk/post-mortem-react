@@ -4,8 +4,9 @@ import style from './organes.module.css'
 
 import Navbar from '../global/Navbar'
 import OrganesCard from './OrganesCard'
+import OverlayCard from '../global/OverlayCard'
 
-const placeholderImg = 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-128.png'
+const placeholderImg = 'http://lorempixel.com/g/400/400'
 
 const organesArray = [{
 	name: 'foie',
@@ -38,13 +39,17 @@ export default class OrganesPick extends Component {
 			cornee: false,
 			intestin: false,
 			confirmation: false,
-			validate: false,
+			overlay: false,
 		}
 	}
 
 	selectAll() {
 		for (let key in this.state) {
-			this.setState( { [key]: true } )
+			console.log(key)
+			if(key !== 'confirmation' && key !== 'overlay') {
+
+				this.setState( { [key]: true } )
+			}
 		}
 	}
 
@@ -63,6 +68,11 @@ export default class OrganesPick extends Component {
 
 	validate() {
 		console.log('validate')
+
+
+		//action backend
+
+		this.setState( { overlay: true } )
 	}
 
 	selectComponent(name) {
@@ -103,6 +113,20 @@ export default class OrganesPick extends Component {
 
 					<button onClick={() => this.confirmSelection()}>Valider</button>
 				</div>
+
+				{this.state.overlay ? 
+					<OverlayCard
+					title='Coeur sur toi'
+					subtitle={`Tu es tellement généreux que je t'ai écris une chanson :
+					"C'est l'histoire de la MORT
+					Le cycle éternel
+					Qu'un enfant béni
+					Rend immortel"`}
+					button="Cool, retour à l'accueil"
+					homeLink={false}
+					/>
+					: null
+				}
 			</section>
 		);
 	}

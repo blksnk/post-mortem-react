@@ -1,3 +1,6 @@
+const {getJwt, setJwt, delJwt} = require('../helpers.js')
+const axios = require('axios')
+
 const initState = {
 	loggedIn: false,
 	jwt: null,
@@ -18,14 +21,22 @@ const rootReducer = (state = initState, action) => {
 	console.log(state);
 	switch(action.type) {
 		case 'SET_PROFILE_PIC_PREVIEW': {
+			console.log('NEW PROFILE PIC PREVIEW', action.base64)
 			return {
 				...state,
 				profilePicPreviewBase64: action.base64,
 			}
 		}
 
+		case 'UPLOAD_PIC': {
+			
+
+			return state
+
+		}
+
 		case 'SIGN_IN': {
-			localStorage.setItem('jwt', action.jwt)
+			setJwt(action.jwt)
 
 			return {
 				...state,
@@ -35,7 +46,7 @@ const rootReducer = (state = initState, action) => {
 		}
 
 		case 'SIGN_OUT': {
-			localStorage.removeItem('jwt')
+			delJwt()
 
 			return {
 				...state,

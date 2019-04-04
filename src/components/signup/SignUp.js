@@ -83,17 +83,17 @@ class SignUp extends Component {
 
 		console.log(this.state)
 
-		const onChange = e => this.handleChange(e)
+		// const onChange = e => this.handleChange(e)
 
 		return (
 			<div className='signup-wrapper'>
 
 				<Logo />
 
-				<Input onChange={onChange} label="Prénom" type="text" name="firstName"/>
-				<Input onChange={onChange} label="Nom de famille" type="text" name="lastName"/>
-				<Input onChange={onChange} label="Email" type="email" name="email"/>
-				<Input onChange={onChange} label="Mot de passe" type="password" name="password"/>
+				<Input onChange={(e) => this.handleChange(e)} label="Prénom" type="text" name="firstName"/>
+				<Input onChange={(e) => this.handleChange(e)} label="Nom de famille" type="text" name="lastName"/>
+				<Input onChange={(e) => this.handleChange(e)} label="Email" type="email" name="email"/>
+				<Input onChange={(e) => this.handleChange(e)} label="Mot de passe" type="password" name="password"/>
 
 				<button className={btnStyle.bigBlue} onClick={() => this.handleSubmit()}>Créer un compte</button>
 				<button className={btnStyle.smallGrey} onClick={() => this.setState({redirectLogin: true})}>Se connecter</button>

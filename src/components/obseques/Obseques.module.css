@@ -26,63 +26,79 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: end;
   width: 100%;
+  margin-top: 5vh;
 }
 
 .choiceList {
   display: flex;
+  height: 50vh;
+}
+.choiceListColumn {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.choiceListRow {
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  height: 50vh;
+  justify-content: space-between;
+}
+
+.choiceItemLarge {
+  font-family: Roboto;
+  width: 80vw;
+  font-size: 20px;
+}
+
+.choiceItemSmall {
+  width: 37vw;
+  font-family: Karla;
+  font-size: 16px;
 }
 
 .choiceItem {
-  width: 40%;
-  height: 35vw;
-  background: #EEF3F8;
+  height: 38vw;
   border-radius: 5px;
-  margin-top: 5%;
+  margin-top: 2vh;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .choiceTitle {
-  font-family: Roboto;
   font-weight: bold;
-  font-size: 18px;
   text-align: center;
   color: #000000;
+}
+
+.choiceSubtitle {
+  font-weight: lighter;
 }
 
 .choiceImage {
   height: 50%;
   width: 100%;
   object-fit: cover;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
 }
 
 .isClicked {
   border: 1px solid #6264DB;
 }
 
-.isClickedIcon {
-  position: absolute;
-  top: 4%;
-  right: 4%;
-}
-
 #nextBtn {
+  background: #5D1AD5;
   border: none;
   border-radius: 8px;
-  background-color: rgb(98, 100, 219);
   color: white;
-  height: 25px;
-  font-size: 12px;
-  font-weight: bold;
   cursor: pointer;
+  font-size: 20px;
+  font-family: Karla;
+  padding: 6px 10px;
 }
 
 .inputList {
@@ -91,8 +107,105 @@
 }
 
 .title {
-  font-family: Odin Rounded;
+  font-family: Karla;
   font-size: 35px;
   color: #EA378E;
   text-align: left;
+  margin-top: 6vh;
+  margin-bottom: 4vh;
+  width: 75%;
+}
+
+.cardTitle {
+  font-family: Roboto;
+  font-size: 16px;
+  text-align: left;
+  color: black;
+  margin-bottom: 4vh;
+}
+
+.cardImage {
+  position: absolute;
+  top: 6vh;
+  z-index: -1;
+  right: 0;
+}
+
+.inputLabel {
+  text-align: left;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 2vh;
+}
+
+.summaryList {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.summaryBox {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 1vh;
+}
+
+.summaryBoxHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.funeralTypeBox {
+  background: #60D2F1;
+}
+
+.musicBox {
+  background: #EEF3F8;
+}
+
+.locationBox {
+  background: #EEF3F8;
+}
+
+.editIcon {
+  cursor: pointer;
+}
+.pinkBorder {
+  border: 2px solid #EA378E;
+}
+
+.pinkBackground {
+  background-color: #EA378E;
+}
+
+.greenBorder {
+  border: 2px solid #0FCBA7;
+}
+
+.greenBackground {
+  background-color: #0FCBA7;
+}
+
+.yellowBorder {
+  border: 2px solid #FFC70E;
+}
+
+.yellowBackground {
+  background-color: #FFC70E;
+}
+
+.redBorder {
+  border: 2px solid #F8634B;
+}
+
+.redBackground {
+  background-color: #F8634B;
 }
