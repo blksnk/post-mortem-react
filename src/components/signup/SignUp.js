@@ -4,7 +4,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {SIGN_IN} from '../../actions/rootActions'
 
-import Logo from '../Logo.js'
+import Logo from '../global/Logo.js'
 import style from './SignUp.module.css'
 import btnStyle from '../buttons.module.css'
 
