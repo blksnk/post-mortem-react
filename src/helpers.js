@@ -36,12 +36,30 @@ const updateUserAvatar = async (url) => {
 	try {
 		const response = await axios.post('http://localhost:5000/user/update', {avatar: url}, {
 		headers: {
-			'Authorization': `Bearer ${jwt}`
+			'authorization': `Bearer ${jwt}`
 		}})
 
 		console.log(response.data)
 		return response.data
 
+	}
+	catch(e) {
+		console.log(e)
+	}
+}
+
+const addTrusted = async ({firstName, lastName, email}) => {
+	console.log(jwt)
+	try {
+		const response = await axios.post('http://localhost:5000/trusted-contact/add', {
+			firstName,
+			lastName,
+			email
+		}, {
+		headers: {
+			'authorization': `Bearer ${jwt}`
+		}})
+		return response.data
 	}
 	catch(e) {
 		console.log(e)
@@ -54,5 +72,6 @@ export {
 	delJwt,
 	uploadImage,
 	updateUserAvatar,
-	setUserAvatar
+	setUserAvatar,
+	addTrusted,
 }

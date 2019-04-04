@@ -5,6 +5,7 @@ import btnStyle from '../global/buttons.module.css'
 
 import OverlayCard from '../global/OverlayCard'
 import UploadProfilePic from '../global/UploadProfilePic.js'
+import {addTrusted} from '../../helpers'
 
 export default class TrustedPerson extends Component {
 	constructor(props) {
@@ -20,14 +21,21 @@ export default class TrustedPerson extends Component {
 		this.setState( { [name]: value } )
 	}
 
-	handleSubmit() {
-		const {email, name} = this.state
-		if(name && email) {
+	async handleSubmit() {
+		const {email, firstName, lastName} = this.state
+		if(firstName && lastName && email) {
 			//submit to db
+			try {
+				const data = await addTrusted({email, firstName, lastName})
+				console.log(data)
+			}
+			catch(e) {
+				console.log(e)
+			}
 
 			//then redirect to home
 
-			this.setState({confirmation: true})
+			// this.setState({confirmation: true})
 		}
 	}
 
@@ -45,13 +53,19 @@ export default class TrustedPerson extends Component {
 
 				<label className={style.inputLabel}>
 					Prénom
-					<input name='name' onChange={(e) => this.handleChange(e)} type="text"/>
+					<input name='firstName' onChange={(e) => this.handleChange(e)} type="text"/>
+				</label>
+
+				<label className={style.inputLabel}>
+					Nom de famille
+					<input name='lastName' onChange={(e) => this.handleChange(e)} type="text"/>
 				</label>
 
 				<label className={style.inputLabel}>
 					Email
 					<input name='email' onChange={(e) => this.handleChange(e)} type="email"/>
 				</label>
+
 
 				<button className={btnStyle.bigBlue} onClick={e => this.handleSubmit()}>Valider</button>
 
