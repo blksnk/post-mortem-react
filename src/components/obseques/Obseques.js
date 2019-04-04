@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {SET_FUNERAL_INPUTS} from '../../actions/rootActions'
 import style from './Obseques.module.css'
-import Navbar from '../Navbar'
+import Navbar from '../global/Navbar'
 import joePink from './icons/joePink.svg'
 import joeYellow from './icons/joeYellow.svg'
 import joeGreen from './icons/joeGreen.svg'
@@ -13,7 +13,6 @@ import coffin1 from './icons/coffin1.svg'
 import coffin2 from './icons/coffin2.svg'
 import coffin3 from './icons/coffin3.svg'
 import editIcon from './icons/editIcon.svg'
-
 
 const cards = [
   {
@@ -230,6 +229,7 @@ class Obseques extends Component {
             key={5}
           />
         )
+<<<<<<< HEAD
         case 6: return (
           <SummaryList 
             callbackHandleSaveInput={this.handleSaveInput}
@@ -238,6 +238,9 @@ class Obseques extends Component {
         )
         default: 
           return null;
+=======
+        default: return
+>>>>>>> 8895fed72cb982d1ef08aff2cefaa9331f00b882
       }
     }
     

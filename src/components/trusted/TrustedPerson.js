@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import style from './TrustedPerson.module.css'
-import btnStyle from '../buttons.module.css'
+import btnStyle from '../global/buttons.module.css'
 
 import OverlayCard from '../global/OverlayCard'
-import UploadProfilePic from '../UploadProfilePic.js'
+import UploadProfilePic from '../global/UploadProfilePic.js'
 
 export default class TrustedPerson extends Component {
 	constructor(props) {

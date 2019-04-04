@@ -6,7 +6,7 @@ import {SIGN_IN} from '../../actions/rootActions'
 
 import Logo from '../global/Logo.js'
 import style from './SignUp.module.css'
-import btnStyle from '../buttons.module.css'
+import btnStyle from '../global/buttons.module.css'
 
 const Input = ({ label, name, type, onChange }) => (
   <label className={style.inputLabel}>

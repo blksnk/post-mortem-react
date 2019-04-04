@@ -1,0 +1,59 @@
+.AddPropertyStyle {
+    overflow-y: hidden; 
+    height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    height: 10vh;
+    padding-left: 5%;
+}
+
+/* ADD IMAGE */
+.imageItem {
+    background-color: rgb(93, 26, 213);
+    height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* OWNERS AND PROPERTY DIV */
+.ownersAndProperty {
+    display: flex;
+    flex-direction: column;
+
+    height: 65vh;
+} 
+
+.label {
+    height: 10%;
+    padding-top: 15px;
+}
+
+.input {
+    border: none;
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: #a6adb6
+}
+
+.subtitle {
+    margin: 0;
+    color: rgb(166, 173, 181);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.leguerTo {
+    height: 40%;
+}
+
+.button {
+    display: flex;
+    align-self: flex-start;
+}

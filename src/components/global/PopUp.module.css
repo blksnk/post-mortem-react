@@ -1,0 +1,43 @@
+.wrapBackground {
+  background-color: #E0E0F8;
+  border-top-left-radius: 10vh;
+  border-top-right-radius: 10vh;
+  height: 35vh;
+  position: relative;
+}
+
+.cross {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.wrapTextAndSkeleton {
+  display: flex;
+  position: absolute;
+  top: 45px;
+  right: 25px;
+  bottom: 5px;
+}
+
+.globalBubble {
+  position: relative;
+  border-radius: 5px;
+}
+
+.addOnBubble {
+  position: absolute;
+  bottom: 37px;
+  left: 224px;
+}
+
+.text {
+  background-color: white;
+  width: 60vw;
+  min-height: 10vh;
+}
+
+.skeleton {
+  max-width: 20vw;
+  margin-left: 5vw;
+}
