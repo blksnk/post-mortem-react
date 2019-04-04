@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import {SET_FUNERAL_INPUTS} from '../../actions/rootActions'
 import style from './Obseques.module.css'
 import Navbar from '../global/Navbar'
+import ChoiceList from './ChoiceList'
+import InputList from './InputList'
+import SummaryList from './SummaryList'
 import joePink from './icons/joePink.svg'
 import joeYellow from './icons/joeYellow.svg'
 import joeGreen from './icons/joeGreen.svg'
@@ -12,7 +15,6 @@ import joeGrey from './icons/joeGrey.svg'
 import coffin1 from './icons/coffin1.svg'
 import coffin2 from './icons/coffin2.svg'
 import coffin3 from './icons/coffin3.svg'
-import editIcon from './icons/editIcon.svg'
 
 const cards = [
   {
@@ -160,7 +162,7 @@ const cards = [
 
 class Obseques extends Component {
     state = {
-        index: 6,
+        index: 0,
         funeralInputs: {},
         currentInput: null,
     }
@@ -262,123 +264,6 @@ class Obseques extends Component {
             </section>
         );
     }
-}
-
-class ChoiceList extends Component {
-  state = {
-    indexSelected: -1,
-  }  
-
-  handleClickedCallback = (index) => {
-    this.setState({ indexSelected: index });
-    this.props.callbackHandleSaveInput(index);
-  }
-
-  displayChoice = (choice, index) => {
-    return (
-      <ChoiceItem 
-        choice={choice} 
-        callbackHandleClicked={this.handleClickedCallback} 
-        isSelected={this.state.indexSelected === index} 
-        key={index} 
-        indexChoice={index} 
-        itemStyle={this.props.card.listStyle === 'row' ? 'small' : 'large'}
-        itemColor={this.props.card.borderColor}
-        itemBackground={this.props.card.backgroundColor}
-      />
-    )
-  }
-
-  render() {
-    return (
-      <div className={style.choiceList + ' ' + (this.props.card.listStyle === 'row' ? style.choiceListRow : style.choiceListColumn )}>
-        {this.props.card.choices.map(this.displayChoice)}
-      </div>
-    )
-  }
-}
-
-class ChoiceItem extends Component {
-  handleClicked = (event) => {
-    if(this.props.isSelected) {
-      this.props.callbackHandleClicked(-1);
-    } else {
-      this.props.callbackHandleClicked(this.props.indexChoice);
-    }
-  }
-
-  render () {
-    return (
-      <div className={style.choiceItem + ' ' + this.props.itemColor + (this.props.isSelected? ' ' + this.props.itemBackground : '') + ' ' + (this.props.itemStyle === 'small' ? style.choiceItemSmall : style.choiceItemLarge)} onClick={this.handleClicked}>
-        {this.props.choice.image?  <img className={style.choiceImage} src={this.props.choice.image} /> : null}
-        <div className={style.choiceTitle}>{this.props.choice.title}</div>
-        {this.props.choice.subtitle? <div className={style.choiceSubtitle}>{this.props.choice.subtitle}</div> : null}
-      </div>
-    )
-  }
-}
-
-class InputList extends Component {
-  state = {
-    inputList: {},
-  }
-
-  handleChange(e) {
-		let {name, value} = e.target
-
-		if (value === '') {
-			value = null
-		}
-
-    let inputList = this.state.inputList;
-    inputList[name] = value;
-    this.setState( { inputList: inputList } );
-    this.props.callbackHandleSaveInput(this.state.inputList);
-  }
-
-  displayInput = (input, index) => {
-      return (
-        <label className={style.inputLabel}>{input.label}
-            <input name={'input-' + index}  placeholder={input.placeholder} type="text" onChange={(e) => this.handleChange(e)}/>
-        </label>
-      )
-  }
-
-  render () {
-    return (
-      <div className={style.inputList}>
-        {this.props.card.inputs.map(this.displayInput)}
-      </div>
-    )
-  }
-}
-
-class SummaryList extends Component {
-  render () {
-    return (
-      <div className={style.summaryList}>
-        <div className={style.funeralTypeBox + ' ' + style.summaryBox}>
-          <div className={style.summaryBoxHeader}>
-            <div>Inhumation</div>
-            <div className={style.editIcon}><img src={editIcon} alt="Icône de modification" /></div>
-          </div>
-        </div>
-        <div className={style.funeralTypeDetailsBox}></div>
-        <div className={style.musicBox + ' ' + style.summaryBox}>
-          <div className={style.summaryBoxHeader}>
-            <div>Musique</div>
-            <div className={style.editIcon}><img src={editIcon} alt="Icône de modification" /></div>
-          </div>
-        </div>
-        <div className={style.locationBox + ' ' + style.summaryBox}>
-          <div className={style.summaryBoxHeader}>
-            <div>Lieux</div>
-            <div className={style.editIcon}><img src={editIcon} alt="Icône de modification" /></div>
-          </div>
-        </div>
-      </div>
-    )
-  }
 }
 
 const mapStateToProps = (state) => ({
