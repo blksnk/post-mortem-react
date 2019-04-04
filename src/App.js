@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
 import ScreenTooBig from './components/global/ScreenTooBig'
+import CheckLogin from './components/global/CheckLogin'
+
 import Home from './components/home/Home'
 import SignUp from './components/signup/SignUp'
 import ChooseAvatar from './components/signup/ChooseAvatar'
@@ -47,6 +49,8 @@ class App extends Component {
         </Switch>
 
         <ScreenTooBig/>
+        <CheckLogin/>
+
       </div>
     );
   }
