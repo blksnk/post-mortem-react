@@ -5,8 +5,6 @@ import skeleton from '../../ressources/icons/skeleton.svg'
 import cross from '../../ressources/icons/cross.svg'
 import conversationBubble from '../../ressources/icons/conversationBubble.svg'
 
-
-
 export default class PopUp extends Component {
   render () {
     return (
@@ -18,9 +16,7 @@ export default class PopUp extends Component {
         <div className={style.wrapTextAndSkeleton}>
           <div className={style.globalBubble}>
             <div className={style.text}>
-                opezfkezopfkfezopkfopfezokefzkop
-
-
+                {this.props.text}
             </div>
             <div className={style.addOnBubble}>
             <img src={conversationBubble} alt="bubble"/>
