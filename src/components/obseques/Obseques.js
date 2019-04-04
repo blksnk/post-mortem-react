@@ -229,7 +229,6 @@ class Obseques extends Component {
             key={5}
           />
         )
-<<<<<<< HEAD
         case 6: return (
           <SummaryList 
             callbackHandleSaveInput={this.handleSaveInput}
@@ -238,9 +237,6 @@ class Obseques extends Component {
         )
         default: 
           return null;
-=======
-        default: return
->>>>>>> 8895fed72cb982d1ef08aff2cefaa9331f00b882
       }
     }
     
