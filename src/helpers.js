@@ -48,13 +48,14 @@ const updateUserAvatar = async (url) => {
 	}
 }
 
-const addTrusted = async ({firstName, lastName, email}) => {
-	console.log(jwt)
+const addTrusted = async ({firstName, lastName, email, avatar}) => {
+	console.log(avatar)
 	try {
 		const response = await axios.post('http://localhost:5000/trusted-contact/add', {
 			firstName,
 			lastName,
-			email
+			email,
+			avatar
 		}, {
 		headers: {
 			'authorization': `Bearer ${jwt}`
@@ -66,6 +67,32 @@ const addTrusted = async ({firstName, lastName, email}) => {
 	}
 }
 
+const storeTrusted = (firstName, lastName, email, avatar) => {
+	localStorage.setItem('trustedContactFirstName', firstName)
+	localStorage.setItem('trustedContactLastName', lastName)
+	localStorage.setItem('trustedContactEmail', email)
+	localStorage.setItem('trustedContactAvatar', avatar)
+}
+
+const getStoredTrusted = () => {
+	const firstName = localStorage.getItem('trustedContactFirstName'),
+				lastName = localStorage.getItem('trustedContactLastName'),
+				email = localStorage.getItem('trustedContactEmail'),
+				avatar = localStorage.getItem('trustedContactAvatar'),
+				pending = localStorage.getItem('trustedContactPending')
+	return {
+		firstName,
+		lastName,
+		email,
+		avatar,
+		pending
+	}
+}
+
+const updateStoredTrustedPending = (status) => {
+	localStorage.setItem('trustedContactPending', status)
+}
+
 export {
 	getJwt,
 	setJwt,
@@ -74,4 +101,7 @@ export {
 	updateUserAvatar,
 	setUserAvatar,
 	addTrusted,
+	storeTrusted,
+	getStoredTrusted,
+	updateStoredTrustedPending,
 }

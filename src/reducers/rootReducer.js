@@ -12,6 +12,15 @@ const initState = {
 		img: '',
 		owners: '',
 	},
+	trustedContact: {
+		info: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			avatar: '',
+		},
+		pending: false,
+	},
 	owners: [],
 	funeralInputs: {},
 }
@@ -33,6 +42,31 @@ const rootReducer = (state = initState, action) => {
 
 			return state
 
+		}
+
+		case 'ADD_TRUSTED': {
+			return {
+				...state,
+				trustedContact: {
+					info: {
+						firstName: action.info.firstName,
+						lastName: action.info.lastName,
+						email: action.info.email,
+						avatar: action.info.avatar,
+					}
+				}
+			}
+		}
+
+		case 'SET_TRUSTED_PENDING': {
+			console.log('reducer set pending')
+			return {
+				...state,
+				trustedContact: {
+					...state.trustedContact,
+					pending: true,
+				}
+			}
 		}
 
 		case 'SIGN_IN': {
