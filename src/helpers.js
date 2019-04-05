@@ -89,6 +89,15 @@ const getStoredTrusted = () => {
 	}
 }
 
+const delTrusted = () => {
+	localStorage.removeItem('trustedContactFirstName')
+	localStorage.removeItem('trustedContactLastName')
+	localStorage.removeItem('trustedContactEmail')
+	localStorage.removeItem('trustedContactAvatar')
+
+	updateStoredTrustedPending(false)
+}
+
 const updateStoredTrustedPending = (status) => {
 	localStorage.setItem('trustedContactPending', status)
 }
@@ -104,4 +113,5 @@ export {
 	storeTrusted,
 	getStoredTrusted,
 	updateStoredTrustedPending,
+	delTrusted,
 }
