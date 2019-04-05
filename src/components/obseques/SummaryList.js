@@ -8,6 +8,12 @@ class SummaryList extends Component {
     this.props.callbackHandleEdit(targetPage);
   }
 
+  displayListItem = (item) => {
+    return (
+      <div>{item}</div>
+    )
+  }
+
   render () {
     return (
       <div className={style.summaryList}>
@@ -23,11 +29,21 @@ class SummaryList extends Component {
             <div>Musique</div>
             <div className={style.editIcon}><img src={editIcon} targetpage={4} onClick={this.handleEditCallback} alt="Icône de modification" /></div>
           </div>
+          <div className={style.summaryBoxBody}>
+            <div>{this.props.funeralInputs.musicList[0]}</div>
+            <div>{this.props.funeralInputs.musicList[1]}</div>
+            <div>{this.props.funeralInputs.musicList[2]}</div>
+          </div>
         </div>
         <div className={style.locationBox + ' ' + style.summaryBox}>
           <div className={style.summaryBoxHeader}>
             <div>Lieux</div>
             <div className={style.editIcon}><img src={editIcon} targetpage={5} onClick={this.handleEditCallback} alt="Icône de modification" /></div>
+          </div>
+          <div className={style.summaryBoxBody}>
+            <div>{this.props.funeralInputs.locationList[0]}</div>
+            <div>{this.props.funeralInputs.locationList[1]}</div>
+            <div>{this.props.funeralInputs.locationList[2]}</div>
           </div>
         </div>
       </div>

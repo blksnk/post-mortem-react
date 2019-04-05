@@ -24,6 +24,15 @@ const SET_FUNERAL_INPUTS = (funeralInputs) => ({
 	funeralInputs: funeralInputs,
 })
 
+const ADD_TRUSTED = (firstName, lastName, email, avatar) => ({
+	type: 'ADD_TRUSTED',
+	info: {firstName, lastName, email, avatar}
+})
+
+const SET_TRUSTED_PENDING = () => ({
+	type: 'SET_TRUSTED_PENDING',
+})
+
 module.exports = {
 	SET_PROFILE_PIC_PREVIEW,
 	SIGN_IN,
@@ -31,4 +40,6 @@ module.exports = {
 	IS_OPENED,
 	IS_ADD_OWNER_OPENED,
 	SET_FUNERAL_INPUTS,
+	ADD_TRUSTED,
+	SET_TRUSTED_PENDING,
 }
