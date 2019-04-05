@@ -32,6 +32,8 @@
   width: 50vw;
   min-height: 14vh;
   border-radius: 5px;
+  text-align: left;
+  padding: 1vw 1vh;
 }
 
 .skeleton {
