@@ -16,6 +16,21 @@ const setUserAvatar = (url) => {
 	localStorage.setItem('avatar', url)
 }
 
+const inputToBase64 = (file) => {
+
+	if(!file.type.includes("image/")) {
+		return null
+	}
+	else {
+		const reader = new FileReader()
+		reader.onload = e => {
+			return e.target.result
+		}
+
+		reader.readAsDataUrl(file)
+	}
+}
+
 const uploadImage = async image => {
 	console.log('uploadImage')
 	try {
@@ -106,6 +121,7 @@ export {
 	getJwt,
 	setJwt,
 	delJwt,
+	inputToBase64,
 	uploadImage,
 	updateUserAvatar,
 	setUserAvatar,
