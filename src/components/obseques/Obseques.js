@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {SET_FUNERAL_INPUTS} from '../../actions/rootActions'
 import style from './Obseques.module.css'
 import Navbar from '../global/Navbar'
+import OverlayCard from '../global/OverlayCard'
 import ChoiceList from './ChoiceList'
 import InputList from './InputList'
 import SummaryList from './SummaryList'
@@ -15,6 +16,13 @@ import joeGrey from './icons/joeGrey.svg'
 import coffin1 from './icons/coffin1.svg'
 import coffin2 from './icons/coffin2.svg'
 import coffin3 from './icons/coffin3.svg'
+import tomb1 from './icons/tomb1.svg'
+import tomb2 from './icons/tomb2.svg'
+import tomb3 from './icons/tomb3.svg'
+import urn1 from './icons/urn1.svg'
+import urn2 from './icons/urn2.svg'
+import urn3 from './icons/urn3.svg'
+import joewink from '../../ressources/icons/joewink.svg'
 
 const cards = [
   {
@@ -88,18 +96,21 @@ const cards = [
         title: "Caveau",
         subtitle: "(pour toi et toute ta famille)",
         nextCard: 4,
+        image: tomb1,
         endSection: true,
       },
       {
         title: "Tombe pleine terre",
         subtitle: "(1 personne max)",
         nextCard: 4,
+        image: tomb2,
         endSection: true,
       },
       {
         title: "L'enfeu",
         subtitle: "(spécial pour les sudistes)",
         nextCard: 4,
+        image: tomb3,
         endSection: true,
       }
     ]
@@ -113,15 +124,24 @@ const cards = [
     image: joeRed,
     choices: [
       {
-        title: "Urne en composite",
-        subtitle: "(pour toi et toute ta famille)",
+        title: "Urne en cuivre",
+        subtitle: "",
         nextCard: 4,
+        image: urn1,
         endSection: true,
       },
       {
-        title: "Urne recyclable",
-        subtitle: "(pour toi et toute ta famille)",
+        title: "Urne métallique",
+        subtitle: "",
         nextCard: 4,
+        image: urn2,
+        endSection: true,
+      },
+      {
+        title: "Urne en porcelaine",
+        subtitle: "",
+        nextCard: 4,
+        image: urn3,
         endSection: true,
       }
     ]
@@ -178,6 +198,7 @@ class Obseques extends Component {
         currentInput: null,
         currentInputValue: null,
         editMode: false,
+        showConfirmation: false,
     }
 
     handleNextCard = (event) => {
@@ -206,6 +227,10 @@ class Obseques extends Component {
         funeralInputs[card.key] = this.state.currentInputValue;
         this.props.setFuneralInputs({funeralInputs: funeralInputs});
       }
+    }
+
+    handleSaveAll = () => {
+      this.setState({ showConfirmation: true });
     }
 
     handleSaveInput = (index, input) => {
@@ -286,6 +311,13 @@ class Obseques extends Component {
         return (
             <section className={style.wrapper}>
               <Navbar />
+              { this.state.showConfirmation? 
+                <OverlayCard title="Tes obsèques sont bien enregistrées" 
+                             subtitle="Tes choix seront bien sûr modifiables à tout moment si tu changes d'avis"
+                             button="Cool, retour à l'accueil"
+                             url="/"
+                             image={joewink}
+                /> : null}
               <div className={style.cardWrapper}>
                 <div className={style.title}>
                   <div>Les obsèques de tes rêves</div>
@@ -298,7 +330,9 @@ class Obseques extends Component {
                 </div>
 
                 <div className={style.footer}>
-                <button id={style.nextBtn} onClick={this.handleNextCard}>Valider</button>
+                {(this.state.index !== 6) ? <button id={style.nextBtn} onClick={this.handleNextCard}>Valider</button>
+                : <button id={style.saveBtn} onClick={this.handleSaveAll}>Enregistrer</button> }
+                
                 </div>
               </div>
             </section>

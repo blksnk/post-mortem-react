@@ -25,16 +25,16 @@ class InputList extends Component {
     }
     
     let inputList = this.state.inputList;
-    inputList[name] = value;
+    inputList[parseInt(name)] = value;
     this.setState( { inputList: inputList } );
     this.props.callbackHandleSaveInput(this.state.inputList, this.state.inputList);
   }
 
   displayInput = (input, index) => {
-      const inputKey = 'input-' + index;
+      const inputKey = index;
       return (
         <label className={style.inputLabel} key={index}>{input.label}
-            <input name={inputKey} value={(this.props.inputs === null) ? null : this.props.inputs[inputKey]} placeholder={input.placeholder} type="text" onChange={(e) => this.handleChange(e)}/>
+            <input name={inputKey} key={index} value={(this.props.inputs === null) ? null : this.props.inputs[inputKey]} placeholder={input.placeholder} type="text" onChange={(e) => this.handleChange(e)}/>
         </label>
       )
   }
