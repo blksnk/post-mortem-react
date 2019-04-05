@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import style from './TrustedPerson.module.css'
 import btnStyle from '../global/buttons.module.css'
+import Navbar from '../global/Navbar'
 
 import OverlayCard from '../global/OverlayCard'
 import UploadProfilePic from '../global/UploadProfilePic.js'
@@ -15,7 +16,8 @@ class TrustedPerson extends Component {
 		this.state = {
 			redirect: false,
 			confirmation: false,
-			pending: localStorage.getItem('trustedContactPending')
+			pending: localStorage.getItem('trustedContactPending'),
+			found: false,
 		}
 	}
 
@@ -30,7 +32,10 @@ class TrustedPerson extends Component {
 
 	checkLocalStorage() {
 		const local = getStoredTrusted()
-
+		for (let key in local) {
+			this.setState( { [key]: local[key] } )
+		}	
+		this.setState({found: true})
 	}
 
 	async handleSubmit() {
@@ -66,6 +71,11 @@ class TrustedPerson extends Component {
 	createAddUI() {
 		return (
 					<div>
+
+						<Navbar leftUrl='/trusted'/>
+
+						<h2>Mon contact de confiance</h2>
+
 						<UploadProfilePic/>
 
 
@@ -105,16 +115,37 @@ class TrustedPerson extends Component {
 	createPendingUI() {
 		return (
 			<div>
+					<Navbar leftUrl='/trusted'/>
+				<h2>Mon contact de confiance</h2>
+
+
 				<h4>pending</h4>
 			</div>
 		)
 	}
 
+	createInfoUI() {
+		return (
+		  <div>
+					<Navbar leftUrl='/trusted'/>
+				<h2>Mon contact de confiance</h2>
+
+		  	
+		  </div>
+		)
+	}
+
 	render() {
 		console.log(this.props.pending)
-		return (
+		if(this.state.found) {
+			return (
+			  <div>
+			  	
+			  </div>
+			)
+		}
+		else return (
 			<div className={style.trustedPerson}>
-				<h2>Mon contact de confiance</h2>
 
 				{ this.state.pending ?
 					this.createPendingUI()
