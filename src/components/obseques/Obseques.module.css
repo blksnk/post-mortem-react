@@ -90,7 +90,7 @@
   border: 1px solid #6264DB;
 }
 
-#nextBtn {
+#nextBtn, #saveBtn {
   background: #5D1AD5;
   border: none;
   border-radius: 8px;
@@ -161,6 +161,18 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.summaryBoxBody {
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: #262626;
 }
 
 .funeralTypeBox {

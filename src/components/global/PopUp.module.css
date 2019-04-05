@@ -2,39 +2,38 @@
   background-color: #E0E0F8;
   border-top-left-radius: 10vh;
   border-top-right-radius: 10vh;
-  height: 35vh;
-  position: relative;
+  height: 23vh;
+  position: absolute;
+  top: 77vh;
+  width: 100%;
 }
 
 .cross {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 11vw;
+  top: 2vh;
 }
 
 .wrapTextAndSkeleton {
   display: flex;
   position: absolute;
-  top: 45px;
-  right: 25px;
-  bottom: 5px;
-}
-
-.globalBubble {
-  position: relative;
-  border-radius: 5px;
+  top: 5vh;
+  right: 15vw;
 }
 
 .addOnBubble {
   position: absolute;
-  bottom: 37px;
-  left: 224px;
+  bottom: 3vh;
+  right: 20vw;
 }
 
 .text {
   background-color: white;
-  width: 60vw;
-  min-height: 10vh;
+  width: 50vw;
+  min-height: 14vh;
+  border-radius: 5px;
+  text-align: left;
+  padding: 1vw 1vh;
 }
 
 .skeleton {

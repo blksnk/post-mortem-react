@@ -48,7 +48,7 @@ export default class Home extends Component {
 				{testArray.map(btn=> (
 					<HomeBtn image={btn.image} title={btn.title} url={btn.url} content={btn.content} emptyState={btn.emptyState}/>
 					))}
-        <PopUp />
+        <PopUp text="test" />
 
 			</section>
 		);

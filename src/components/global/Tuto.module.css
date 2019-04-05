@@ -1,3 +1,7 @@
+.responsiveImage {
+  width: 100%;
+}
+
 .Title {
   font-size: 30px;
   line-height: normal;
@@ -24,20 +28,18 @@
   right:0;
   margin:auto;
   z-index: -10;
+  composes: responsiveImage;
 }
 
 .svgForm {
   position: relative;
-  margin-bottom: 45vh;
+  /*margin-top: 75vh;*/
   max-height: 40vh;
-  width: 35vh;
-  left: 5px;
-  float: left;
 
 }
 
-.svgList:first-of-type  {
-  margin-top: 100vh;
+.svgList:first-child  {
+  margin-top: -55vh !important;
 }
 
 .titleSVG {
@@ -46,6 +48,7 @@
   line-height: normal;
   text-align: center;
   font-weight: bold;
+  max-width: 54vh;
 }
 
 .textSVG {
@@ -64,8 +67,17 @@
     z-index: -1;
     position: absolute;
     top: -10vh;
+    composes: responsiveImage;
+
 }
 
+.path {
+    background-image: url(/static/media/lineCapTuto.b818f5a6.svg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    z-index: 2000;
+    position: relative;
+}
 
 .svgFormRight {
   position: relative;
